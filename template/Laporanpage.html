@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100..900&family=Bricolage+Grotesque:wght@100..900&family=Space+Mono:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#1f4fa3","surface-tint":"#2f5bb0","background":"#f8f9ff","secondary-fixed-dim":"#f9bd14","primary":"#003883","inverse-primary":"#afc6ff","on-surface":"#141c28","surface-container-highest":"#dbe3f3","tertiary-container":"#015f34","error":"#ba1a1a","tertiary":"#004524","surface-variant":"#dbe3f3","on-secondary-container":"#6c5000","surface-container-lowest":"#ffffff","surface-container-high":"#e1e8f9","error-container":"#ffdad6","on-surface-variant":"#434652","surface-bright":"#f8f9ff","on-tertiary-fixed":"#00210f","secondary-container":"#fcc019","tertiary-fixed-dim":"#88d7a1","surface-dim":"#d2daeb","inverse-surface":"#29313d","surface-container":"#e6eeff","on-primary-fixed":"#001944","on-tertiary":"#ffffff","on-primary-fixed-variant":"#094396","on-tertiary-fixed-variant":"#00522c","on-secondary-fixed":"#251a00","secondary-fixed":"#ffdf9d","on-error-container":"#93000a","on-secondary-fixed-variant":"#5b4300","outline-variant":"#c3c6d3","primary-fixed-dim":"#afc6ff","tertiary-fixed":"#a4f4bc","on-secondary":"#ffffff","inverse-on-surface":"#ebf1ff","on-background":"#141c28","secondary":"#785900","on-error":"#ffffff","surface-container-low":"#eff3ff","primary-fixed":"#d9e2ff","surface":"#f8f9ff","on-tertiary-container":"#88d7a1","on-primary":"#ffffff","on-primary-container":"#afc6ff","outline":"#737783"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-sm":"0.5rem","space-lg":"1.5rem","space-md":"1rem","gutter":"1rem","space-xl":"2rem","gutter-desktop":"1.5rem","margin-desktop":"2rem","space-xs":"0.25rem","margin":"1rem"},fontFamily:{"body-sm":["Be Vietnam Pro"],"body-lg":["Be Vietnam Pro"],"headline-xl":["Bricolage Grotesque"],"label-code":["Space Mono"],"headline-sm":["Bricolage Grotesque"],"headline-lg":["Bricolage Grotesque"],"headline-xl-mobile":["Bricolage Grotesque"],"headline-lg-mobile":["Bricolage Grotesque"],"label-ui":["Be Vietnam Pro"],"label-numeric":["Space Mono"],"headline-md":["Bricolage Grotesque"],"body-md":["Be Vietnam Pro"]},fontSize:{"body-sm":["0.875rem",{"lineHeight":"1.375rem","fontWeight":"400"}],"body-lg":["1.125rem",{"lineHeight":"1.625rem","fontWeight":"400"}],"headline-xl":["2.25rem",{"lineHeight":"2.75rem","letterSpacing":"-0.03em","fontWeight":"800"}],"label-code":["0.875rem",{"lineHeight":"1.25rem","letterSpacing":"0.02em","fontWeight":"700"}],"headline-sm":["1.125rem",{"lineHeight":"1.5rem","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-lg":["1.75rem",{"lineHeight":"2.25rem","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-xl-mobile":["1.75rem",{"lineHeight":"2.25rem","letterSpacing":"-0.02em","fontWeight":"800"}],"headline-lg-mobile":["1.375rem",{"lineHeight":"1.875rem","letterSpacing":"-0.02em","fontWeight":"700"}],"label-ui":["0.875rem",{"lineHeight":"1.25rem","fontWeight":"600"}],"label-numeric":["1.125rem",{"lineHeight":"1.5rem","letterSpacing":"0em","fontWeight":"700"}],"headline-md":["1.25rem",{"lineHeight":"1.625rem","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["1rem",{"lineHeight":"1.5rem","fontWeight":"400"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-60 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="px-space-md pt-space-md pb-space-sm flex items-center gap-space-sm"><img alt="Logo Lapak UMKM" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VKSXVD3iKeZ8-gS7bmRohkwsIMhYWotlNs_g7xbKjG2KCs3KBFTY3aJ4hJws4Q3obS0CaIH1zlfpE37yx2iXGWPyGVIr7v8kr6V_hyo-FmeNVJZd_1BKEByyZFkD3oL93EXVs95rlUxAgeiIDT4v6L2jYuytq8m3mhVXJ1KyFmMB5JkZ12hAqJsmU0kzz7CWsS0htK1KuZQMN8L5FQptkQLTGWm7GwbUOuASlw-t1MEil4Xv394GwtogY"/><span class="font-headline-md text-headline-md tracking-tight text-primary">Lapak</span></div><div class="px-space-md pb-space-md"><div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between cursor-pointer hover:bg-surface-container transition-colors"><div class="flex flex-col min-w-0 pr-space-xs"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface truncate">Warung Bu Sari</span></div><span class="font-body-sm text-body-sm text-on-surface-variant truncate">Kios Kelontong & Makanan</span><span class="font-label-code text-label-code text-primary truncate">Cabang Pasar Minggu</span></div><span class="material-symbols-outlined text-on-surface-variant text-base shrink-0">unfold_more</span></div></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-surface-container-low text-primary-container font-label-ui rounded-xl"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="kasir" href="#"><span class="material-symbols-outlined text-xl">receipt_long</span><span class="font-label-ui text-label-ui">Kasir (POS)</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="produk" href="#"><span class="material-symbols-outlined text-xl">inventory_2</span><span class="font-label-ui text-label-ui">Produk</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="stok" href="#"><span class="material-symbols-outlined text-xl">warehouse</span><span class="font-label-ui text-label-ui">Stok</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm transition-all bg-surface-container-low text-primary-container font-label-ui rounded-xl" data-path="laporan" href="#"><span class="material-symbols-outlined text-xl">bar_chart</span><span class="font-label-ui text-label-ui">Laporan</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="pelanggan" href="#"><span class="material-symbols-outlined text-xl">group</span><span class="font-label-ui text-label-ui">Pelanggan</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="pengaturan" href="#"><span class="material-symbols-outlined text-xl">settings</span><span class="font-label-ui text-label-ui">Pengaturan</span></a></nav></div><div class="p-space-md flex flex-col gap-space-sm"><div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between"><div class="flex items-center gap-space-sm min-w-0"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZZYYSQ8rVzSwcOEuD_3H_8T3nJy1I7oqkUt6riV4Hk-1oSJjdVIMDdVw-mfoyZFWRe-UUrd8JuXasdzHlDGW3rRWRVAyuV-g_CjzgTnx8ukaLXIuVnxirEwA-ZzJFjbN7ixcml2F-Hjuc_uIOJxOB0XeRB4P67pWIkxOv1DQLXTKH8frRlW3XPI0cNPz0gjrR2eslWC111-qjScV_LHH6HmJODh3BKS1ItDJ8WROdb7RoV8QMt30K"/><div class="flex flex-col min-w-0"><span class="font-label-ui text-label-ui text-on-surface truncate">Bu Sari</span><span class="font-body-sm text-body-sm text-on-surface-variant truncate">Pemilik Kios</span></div></div><div class="flex items-center gap-space-xs"><span class="w-2.5 h-2.5 rounded-full bg-tertiary" title="Kasir Aktif"></span></div></div><div class="flex items-center justify-between px-space-xs text-on-surface-variant"><span class="font-body-sm text-body-sm flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-tertiary-container"></span>Online / Buka</span><a class="font-label-code text-label-code text-on-surface-variant hover:text-primary transition-colors flex items-center gap-space-xs" data-path="bantuan" href="#"><span class="material-symbols-outlined text-sm">help</span>Bantuan</a></div></div></aside><div class="pl-60 min-h-screen bg-surface"><header class="fixed top-0 left-60 right-0 h-16 bg-surface-container-lowest z-40 px-space-lg flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-label-code text-label-code text-on-surface-variant"><span class="material-symbols-outlined text-primary text-base">wb_sunny</span><span>Shift Pagi (07:00)</span></div><span class="text-outline-variant font-label-code text-label-code">•</span><div class="flex items-center gap-space-xs font-label-code text-label-code text-on-surface-variant"><span class="material-symbols-outlined text-tertiary text-base">payments</span><span>Kas awal:</span><span class="font-label-numeric text-label-numeric text-on-surface">Rp 200.000</span></div></div><div class="flex items-center gap-space-md"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-base">search</span><input class="bg-surface-container-low pl-9 pr-14 py-1.5 rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary w-64 transition-all" placeholder="Cari menu atau kode barcode..." type="text"/><kbd class="absolute right-2 font-label-code text-label-code text-on-surface-variant bg-surface-container-highest px-1.5 py-0.5 rounded">Ctrl+K</kbd></div><div class="bg-secondary-container text-on-secondary-container px-space-sm py-1.5 rounded-lg flex items-center gap-space-xs font-label-code text-label-code"><span class="material-symbols-outlined text-base">bolt</span><span>F2 Bayar Cepat</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZZYYSQ8rVzSwcOEuD_3H_8T3nJy1I7oqkUt6riV4Hk-1oSJjdVIMDdVw-mfoyZFWRe-UUrd8JuXasdzHlDGW3rRWRVAyuV-g_CjzgTnx8ukaLXIuVnxirEwA-ZzJFjbN7ixcml2F-Hjuc_uIOJxOB0XeRB4P67pWIkxOv1DQLXTKH8frRlW3XPI0cNPz0gjrR2eslWC111-qjScV_LHH6HmJODh3BKS1ItDJ8WROdb7RoV8QMt30K"/></div></header><main class="w-full pt-16"><div class="max-w-[1240px] mx-auto px-gutter-desktop py-gutter-desktop"><div class="flex flex-col w-full gap-space-lg">
+<!-- Header Section -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_4px_0_0_rgba(28,36,48,0.04)]">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-code text-label-code text-primary bg-primary-fixed px-2 py-0.5 rounded-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">menu_book</span> Buku Kas Warung
+        </span>
+<span class="font-label-code text-label-code text-on-surface-variant">•</span>
+<span class="font-label-code text-label-code text-tertiary flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> Shift Pagi Aktif
+        </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Laporan Kas & Buku Utang</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ringkasan pemasukan bersih hari ini, Sabtu 24 Mei 2025</p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Periode Dropdown / Filter Group -->
+<div class="inline-flex bg-surface-container-low p-1 rounded-xl">
+<button class="px-3 py-1.5 rounded-lg font-label-ui text-label-ui bg-surface-container-lowest text-primary shadow-sm transition-all">Hari Ini (24 Mei)</button>
+<button class="px-3 py-1.5 rounded-lg font-label-ui text-label-ui text-on-surface-variant hover:text-on-surface transition-all">Kemarin</button>
+<button class="px-3 py-1.5 rounded-lg font-label-ui text-label-ui text-on-surface-variant hover:text-on-surface transition-all">7 Hari</button>
+<button class="px-3 py-1.5 rounded-lg font-label-ui text-label-ui text-on-surface-variant hover:text-on-surface transition-all">Bulan Ini</button>
+</div>
+<!-- Primary Action CTA -->
+<button class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-2.5 rounded-xl font-label-ui text-label-ui flex items-center gap-space-xs shadow-[0_3px_0_0_rgba(0,35,80,0.3)] active:translate-y-0.5 transition-all" onclick="document.getElementById('modal-laci').classList.toggle('hidden')">
+<span class="material-symbols-outlined text-lg">point_of_sale</span>
+<span>Tutup Kas & Hitung Laci</span>
+<kbd class="font-label-code text-label-code bg-surface-container-lowest/20 text-on-primary px-1.5 py-0.5 rounded ml-1">F6</kbd>
+</button>
+</div>
+</div>
+<!-- 4 Key Indicator Summary Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1: Penjualan Kotor -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl flex flex-col justify-between shadow-[0_4px_0_0_rgba(28,36,48,0.04)] hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-surface-container rounded-full opacity-40 pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Penjualan Kotor</span>
+<span class="material-symbols-outlined text-primary p-1 bg-surface-container-low rounded-lg text-lg">receipt_long</span>
+</div>
+<div>
+<div class="font-label-numeric text-headline-md text-on-surface tracking-tight mb-1">Rp 1.845.000</div>
+<div class="flex items-center gap-1.5 font-label-code text-body-sm text-on-surface-variant">
+<span class="font-bold text-on-surface">42</span> transaksi 
+          <span>•</span>
+<span>Rata-rata Rp 43.900</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Laba Bersih -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl flex flex-col justify-between shadow-[0_4px_0_0_rgba(28,36,48,0.04)] hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-tertiary-fixed/30 rounded-full opacity-40 pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Perkiraan Laba Bersih</span>
+<span class="material-symbols-outlined text-tertiary p-1 bg-tertiary-fixed/40 rounded-lg text-lg">trending_up</span>
+</div>
+<div>
+<div class="font-label-numeric text-headline-md text-tertiary tracking-tight mb-1">Rp 328.500</div>
+<div class="flex items-center gap-2">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-code text-label-code px-2 py-0.5 rounded">Margin 17,8%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Untung bersih</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Uang Tunai di Laci -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl flex flex-col justify-between shadow-[0_4px_0_0_rgba(28,36,48,0.04)] hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-secondary-fixed/40 rounded-full opacity-40 pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Uang Tunai di Laci</span>
+<span class="material-symbols-outlined text-secondary p-1 bg-secondary-fixed/50 rounded-lg text-lg">payments</span>
+</div>
+<div>
+<div class="font-label-numeric text-headline-md text-on-surface tracking-tight mb-1">Rp 1.545.000</div>
+<div class="font-label-code text-body-sm text-on-surface-variant">
+          Modal Rp 200rb + QRIS Rp 300rb
+        </div>
+</div>
+</div>
+<!-- Card 4: Kasbon Belum Lunas -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl flex flex-col justify-between shadow-[0_4px_0_0_rgba(28,36,48,0.04)] hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-error-container/40 rounded-full opacity-40 pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Kasbon Belum Lunas</span>
+<span class="material-symbols-outlined text-error p-1 bg-error-container rounded-lg text-lg">pending_actions</span>
+</div>
+<div>
+<div class="font-label-numeric text-headline-md text-error tracking-tight mb-1">Rp 415.000</div>
+<div class="flex items-center gap-2">
+<span class="bg-error-container text-on-error-container font-label-code text-label-code px-2 py-0.5 rounded">7 Pelanggan</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Perlu ditagih</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Operational Ledger Layout (Bento 2-Col Grid) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Section A: Buku Catatan Bon / Utang Pelanggan (8 cols) -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-xl shadow-[0_4px_0_0_rgba(28,36,48,0.04)] flex flex-col overflow-hidden">
+<!-- Card Header -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">fact_check</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Buku Kasbon Warung (Nota Utang)</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Daftar pelanggan tetangga & jatuh tempo tagihan</p>
+</div>
+</div>
+<button class="bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-ui text-label-ui px-3 py-1.5 rounded-lg flex items-center gap-1 shadow-sm transition-all text-xs">
+<span class="material-symbols-outlined text-sm">add</span> Tambah Bon Baru
+        </button>
+</div>
+<!-- Table Ledger -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest font-label-code text-body-sm text-on-surface-variant">
+<th class="py-3 px-space-md font-semibold">Pelanggan</th>
+<th class="py-3 px-space-md font-semibold">Nominal Bon</th>
+<th class="py-3 px-space-md font-semibold">Tgl Bon</th>
+<th class="py-3 px-space-md font-semibold">Janji Bayar</th>
+<th class="py-3 px-space-md text-right font-semibold">Tindakan</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-on-surface">
+<!-- Row 1: Pak RT Bambang -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-ui text-label-ui text-on-surface group-hover:text-primary transition-colors">Pak RT Bambang</span>
+<span class="font-label-code text-body-sm text-on-surface-variant">0812-3490-1122</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="font-label-numeric text-label-numeric text-error">Rp 145.000</span>
+</td>
+<td class="py-3.5 px-space-md font-label-code text-body-sm text-on-surface-variant">
+                3 hari lalu
+              </td>
+<td class="py-3.5 px-space-md">
+<span class="bg-surface-container-high text-on-surface font-label-code text-label-code px-2 py-0.5 rounded">25 Mei (Gajian)</span>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<button class="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-ui text-body-sm px-2.5 py-1 rounded-lg hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-sm">chat</span>
+<span>Ingatkan WA</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Bu Diah -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-ui text-label-ui text-on-surface group-hover:text-primary transition-colors">Bu Diah (Kost No. 4)</span>
+<span class="font-label-code text-body-sm text-on-surface-variant">0857-8812-4091</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="font-label-numeric text-label-numeric text-error">Rp 65.000</span>
+</td>
+<td class="py-3.5 px-space-md font-label-code text-body-sm text-on-surface-variant">
+                Kemarin
+              </td>
+<td class="py-3.5 px-space-md">
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-code text-label-code px-2 py-0.5 rounded">Besok (25 Mei)</span>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<button class="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-ui text-body-sm px-2.5 py-1 rounded-lg hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-sm">chat</span>
+<span>Ingatkan WA</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Mas Joko -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-ui text-label-ui text-on-surface group-hover:text-primary transition-colors">Mas Joko (Bengkel)</span>
+<span class="font-label-code text-body-sm text-on-surface-variant">0877-2231-9002</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="font-label-numeric text-label-numeric text-error">Rp 95.000</span>
+</td>
+<td class="py-3.5 px-space-md font-label-code text-body-sm text-on-surface-variant">
+                5 hari lalu
+              </td>
+<td class="py-3.5 px-space-md">
+<span class="bg-surface-container-high text-on-surface font-label-code text-label-code px-2 py-0.5 rounded">Akhir Pekan</span>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<button class="inline-flex items-center gap-1 bg-surface-container text-on-surface font-label-ui text-body-sm px-2.5 py-1 rounded-lg hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-sm">payments</span>
+<span>Cicil / Sebagian</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Bu Hendra (Terlambat) -->
+<tr class="bg-error-container/20 hover:bg-error-container/30 transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col">
+<span class="font-label-ui text-label-ui text-error group-hover:underline">Bu Hendra</span>
+<span class="font-label-code text-body-sm text-on-surface-variant">0813-9001-4451</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="font-label-numeric text-label-numeric text-error font-bold">Rp 110.000</span>
+</td>
+<td class="py-3.5 px-space-md font-label-code text-body-sm text-on-surface-variant">
+                1 minggu lalu
+              </td>
+<td class="py-3.5 px-space-md">
+<span class="bg-error text-on-error font-label-code text-label-code px-2 py-0.5 rounded">Lewat Janji!</span>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<button class="inline-flex items-center gap-1 bg-error text-on-error font-label-ui text-body-sm px-2.5 py-1 rounded-lg hover:bg-error/90 transition-all shadow-sm">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span>Catat Lunas</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Quick Insight -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between text-on-surface-variant font-body-sm text-body-sm gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-base">verified</span>
+<span>WhatsApp reminder menggunakan pesan otomatis yang sopan & menjaga silaturahmi.</span>
+</div>
+<div class="font-label-code text-label-code text-on-surface">
+          Total Tertahan: <span class="text-error font-bold">Rp 415.000</span>
+</div>
+</div>
+</div>
+<!-- Section B: Kas Masuk / Keluar Hari Ini (Digital Nota Roll) (4 cols) -->
+<div class="lg:col-span-4 bg-surface-container-lowest rounded-xl shadow-[0_4px_0_0_rgba(28,36,48,0.04)] flex flex-col">
+<div class="p-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-lg">receipt</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Arus Kas Masuk & Keluar</h2>
+</div>
+<span class="font-label-code text-label-code text-on-surface-variant">Live</span>
+</div>
+<!-- Activity Timeline Flow -->
+<div class="p-space-md flex flex-col gap-space-sm">
+<!-- Transaction 1: Tunai -->
+<div class="p-space-sm bg-surface-container-low rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">payments</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-ui text-label-ui text-on-surface">#NK-0842 (Tunai)</span>
+<span class="font-label-code text-body-sm text-on-surface-variant">10:14 • Rokok & Kopi</span>
+</div>
+</div>
+<div class="font-label-numeric text-label-numeric text-tertiary font-bold">+Rp 77.000</div>
+</div>
+<!-- Transaction 2: QRIS -->
+<div class="p-space-sm bg-surface-container-low rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">qr_code_scanner</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-ui text-label-ui text-on-surface">#NK-0841 (QRIS)</span>
+<span class="font-label-code text-body-sm text-on-surface-variant">10:02 • Sembako Beras 5kg</span>
+</div>
+</div>
+<div class="font-label-numeric text-label-numeric text-primary font-bold">+Rp 45.000</div>
+</div>
+<!-- Transaction 3: Pengeluaran Warung -->
+<div class="p-space-sm bg-error-container/25 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">shopping_cart_checkout</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-ui text-label-ui text-error">Beli Es Balok & Gas LPG</span>
+<span class="font-label-code text-body-sm text-on-surface-variant">09:55 • Operasional Kios</span>
+</div>
+</div>
+<div class="font-label-numeric text-label-numeric text-error font-bold">-Rp 50.000</div>
+</div>
+<!-- Transaction 4: Bon Baru Masuk -->
+<div class="p-space-sm bg-secondary-fixed/30 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">history_edu</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-ui text-label-ui text-on-surface">#NK-0840 (Bon Masuk)</span>
+<span class="font-label-code text-body-sm text-on-surface-variant">09:48 • Minyak Goreng & Telur</span>
+</div>
+</div>
+<div class="font-label-numeric text-label-numeric text-secondary font-bold">+Rp 35.000</div>
+</div>
+</div>
+<!-- Quick Action Buttons for Cashier -->
+<div class="p-space-md bg-surface-container-low flex items-center gap-2">
+<button class="flex-1 bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-ui text-body-sm py-2 px-3 rounded-lg flex items-center justify-center gap-1 shadow-sm transition-all">
+<span class="material-symbols-outlined text-error text-base">remove_circle</span>
+<span>Catat Pengeluaran</span>
+</button>
+<button class="flex-1 bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-ui text-body-sm py-2 px-3 rounded-lg flex items-center justify-center gap-1 shadow-sm transition-all">
+<span class="material-symbols-outlined text-tertiary text-base">add_circle</span>
+<span>Uang Masuk Lain</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Section: Rekonsiliasi Uang Fisik Kasir (Interactive Counting Pad) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-[0_4px_0_0_rgba(28,36,48,0.04)] flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-xl">calculate</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Cocokkan Uang Fisik Laci (Kas Masuk Kasir)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Masukkan lembar uang di laci fisik untuk verifikasi selisih dengan sistem</p>
+</div>
+</div>
+<!-- Match Badge Indicator -->
+<div class="bg-tertiary-fixed text-on-tertiary-fixed font-label-ui text-label-ui px-4 py-2 rounded-xl flex items-center gap-2" id="status-rekonsiliasi">
+<span class="material-symbols-outlined text-base">verified</span>
+<span>Selisih Rp 0 (Cocok Tepat dengan Sistem)</span>
+</div>
+</div>
+<!-- Denomination Matrix -->
+<div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-space-sm">
+<!-- 100.000 -->
+<div class="bg-surface-container-low p-space-sm rounded-xl flex flex-col gap-1">
+<span class="font-label-code text-body-sm text-on-surface-variant font-bold">Rp 100.000</span>
+<div class="flex items-center gap-1">
+<input class="w-full bg-surface-container-lowest px-2 py-1 rounded font-label-numeric text-label-numeric text-on-surface text-center focus:outline-none focus:ring-2 focus:ring-primary" id="pecahan-100k" min="0" oninput="hitungTotalLaci()" type="number" value="10"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant">lbr</span>
+</div>
+<span class="font-label-code text-body-sm text-tertiary" id="subtotal-100k">Rp 1.000.000</span>
+</div>
+<!-- 50.000 -->
+<div class="bg-surface-container-low p-space-sm rounded-xl flex flex-col gap-1">
+<span class="font-label-code text-body-sm text-on-surface-variant font-bold">Rp 50.000</span>
+<div class="flex items-center gap-1">
+<input class="w-full bg-surface-container-lowest px-2 py-1 rounded font-label-numeric text-label-numeric text-on-surface text-center focus:outline-none focus:ring-2 focus:ring-primary" id="pecahan-50k" min="0" oninput="hitungTotalLaci()" type="number" value="8"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant">lbr</span>
+</div>
+<span class="font-label-code text-body-sm text-tertiary" id="subtotal-50k">Rp 400.000</span>
+</div>
+<!-- 20.000 -->
+<div class="bg-surface-container-low p-space-sm rounded-xl flex flex-col gap-1">
+<span class="font-label-code text-body-sm text-on-surface-variant font-bold">Rp 20.000</span>
+<div class="flex items-center gap-1">
+<input class="w-full bg-surface-container-lowest px-2 py-1 rounded font-label-numeric text-label-numeric text-on-surface text-center focus:outline-none focus:ring-2 focus:ring-primary" id="pecahan-20k" min="0" oninput="hitungTotalLaci()" type="number" value="4"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant">lbr</span>
+</div>
+<span class="font-label-code text-body-sm text-tertiary" id="subtotal-20k">Rp 80.000</span>
+</div>
+<!-- 10.000 -->
+<div class="bg-surface-container-low p-space-sm rounded-xl flex flex-col gap-1">
+<span class="font-label-code text-body-sm text-on-surface-variant font-bold">Rp 10.000</span>
+<div class="flex items-center gap-1">
+<input class="w-full bg-surface-container-lowest px-2 py-1 rounded font-label-numeric text-label-numeric text-on-surface text-center focus:outline-none focus:ring-2 focus:ring-primary" id="pecahan-10k" min="0" oninput="hitungTotalLaci()" type="number" value="4"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant">lbr</span>
+</div>
+<span class="font-label-code text-body-sm text-tertiary" id="subtotal-10k">Rp 40.000</span>
+</div>
+<!-- 5.000 -->
+<div class="bg-surface-container-low p-space-sm rounded-xl flex flex-col gap-1">
+<span class="font-label-code text-body-sm text-on-surface-variant font-bold">Rp 5.000</span>
+<div class="flex items-center gap-1">
+<input class="w-full bg-surface-container-lowest px-2 py-1 rounded font-label-numeric text-label-numeric text-on-surface text-center focus:outline-none focus:ring-2 focus:ring-primary" id="pecahan-5k" min="0" oninput="hitungTotalLaci()" type="number" value="3"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant">lbr</span>
+</div>
+<span class="font-label-code text-body-sm text-tertiary" id="subtotal-5k">Rp 15.000</span>
+</div>
+<!-- 2.000 -->
+<div class="bg-surface-container-low p-space-sm rounded-xl flex flex-col gap-1">
+<span class="font-label-code text-body-sm text-on-surface-variant font-bold">Rp 2.000</span>
+<div class="flex items-center gap-1">
+<input class="w-full bg-surface-container-lowest px-2 py-1 rounded font-label-numeric text-label-numeric text-on-surface text-center focus:outline-none focus:ring-2 focus:ring-primary" id="pecahan-2k" min="0" oninput="hitungTotalLaci()" type="number" value="4"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant">lbr</span>
+</div>
+<span class="font-label-code text-body-sm text-tertiary" id="subtotal-2k">Rp 8.000</span>
+</div>
+<!-- Logam / Koin -->
+<div class="bg-surface-container-low p-space-sm rounded-xl flex flex-col gap-1">
+<span class="font-label-code text-body-sm text-on-surface-variant font-bold">Koin / Logam</span>
+<div class="flex items-center gap-1">
+<input class="w-full bg-surface-container-lowest px-2 py-1 rounded font-label-numeric text-label-numeric text-on-surface text-center focus:outline-none focus:ring-2 focus:ring-primary" id="pecahan-koin" min="0" oninput="hitungTotalLaci()" type="number" value="2"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant">rb</span>
+</div>
+<span class="font-label-code text-body-sm text-tertiary" id="subtotal-koin">Rp 2.000</span>
+</div>
+</div>
+<!-- Summary Box -->
+<div class="p-space-md bg-surface-container-low rounded-xl flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Target Tunai di Sistem:</span>
+<span class="font-label-numeric text-label-numeric text-on-surface ml-1">Rp 1.545.000</span>
+</div>
+<span class="text-on-surface-variant">•</span>
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Hasil Hitungan Kasir:</span>
+<span class="font-label-numeric text-label-numeric text-tertiary ml-1" id="total-terhitung">Rp 1.545.000</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="font-label-ui text-body-sm text-on-surface-variant hover:text-on-surface px-3 py-1.5 rounded-lg transition-all" onclick="resetPerhitungan()">
+          Reset Hitungan
+        </button>
+<button class="bg-primary hover:bg-primary-container text-on-primary font-label-ui text-label-ui px-4 py-2 rounded-xl flex items-center gap-1.5 shadow-sm transition-all">
+<span class="material-symbols-outlined text-base">save</span>
+<span>Simpan Laporan Shift Ini</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Interactive JavaScript Calculator for Drawer Money Matching -->
+<script>
+    function hitungTotalLaci() {
+      const p100 = parseInt(document.getElementById('pecahan-100k').value) || 0;
+      const p50  = parseInt(document.getElementById('pecahan-50k').value) || 0;
+      const p20  = parseInt(document.getElementById('pecahan-20k').value) || 0;
+      const p10  = parseInt(document.getElementById('pecahan-10k').value) || 0;
+      const p5   = parseInt(document.getElementById('pecahan-5k').value) || 0;
+      const p2   = parseInt(document.getElementById('pecahan-2k').value) || 0;
+      const pkoin = parseInt(document.getElementById('pecahan-koin').value) || 0;
+
+      const tot100 = p100 * 100000;
+      const tot50  = p50 * 50000;
+      const tot20  = p20 * 20000;
+      const tot10  = p10 * 10000;
+      const tot5   = p5 * 5000;
+      const tot2   = p2 * 2000;
+      const totkoin = pkoin * 1000;
+
+      document.getElementById('subtotal-100k').innerText = 'Rp ' + tot100.toLocaleString('id-ID');
+      document.getElementById('subtotal-50k').innerText  = 'Rp ' + tot50.toLocaleString('id-ID');
+      document.getElementById('subtotal-20k').innerText  = 'Rp ' + tot20.toLocaleString('id-ID');
+      document.getElementById('subtotal-10k').innerText  = 'Rp ' + tot10.toLocaleString('id-ID');
+      document.getElementById('subtotal-5k').innerText   = 'Rp ' + tot5.toLocaleString('id-ID');
+      document.getElementById('subtotal-2k').innerText   = 'Rp ' + tot2.toLocaleString('id-ID');
+      document.getElementById('subtotal-koin').innerText = 'Rp ' + totkoin.toLocaleString('id-ID');
+
+      const grandTotal = tot100 + tot50 + tot20 + tot10 + tot5 + tot2 + totkoin;
+      document.getElementById('total-terhitung').innerText = 'Rp ' + grandTotal.toLocaleString('id-ID');
+
+      const expected = 1545000;
+      const diff = grandTotal - expected;
+      const badge = document.getElementById('status-rekonsiliasi');
+
+      if (diff === 0) {
+        badge.className = 'bg-tertiary-fixed text-on-tertiary-fixed font-label-ui text-label-ui px-4 py-2 rounded-xl flex items-center gap-2';
+        badge.innerHTML = '<span class="material-symbols-outlined text-base">verified</span><span>Selisih Rp 0 (Cocok Tepat dengan Sistem)</span>';
+      } else if (diff < 0) {
+        badge.className = 'bg-error-container text-on-error-container font-label-ui text-label-ui px-4 py-2 rounded-xl flex items-center gap-2';
+        badge.innerHTML = '<span class="material-symbols-outlined text-base">warning</span><span>Kurang Rp ' + Math.abs(diff).toLocaleString('id-ID') + ' dari sistem</span>';
+      } else {
+        badge.className = 'bg-secondary-fixed text-on-secondary-fixed font-label-ui text-label-ui px-4 py-2 rounded-xl flex items-center gap-2';
+        badge.innerHTML = '<span class="material-symbols-outlined text-base">info</span><span>Lebih Rp ' + diff.toLocaleString('id-ID') + ' dari sistem</span>';
+      }
+    }
+
+    function resetPerhitungan() {
+      document.getElementById('pecahan-100k').value = 0;
+      document.getElementById('pecahan-50k').value = 0;
+      document.getElementById('pecahan-20k').value = 0;
+      document.getElementById('pecahan-10k').value = 0;
+      document.getElementById('pecahan-5k').value = 0;
+      document.getElementById('pecahan-2k').value = 0;
+      document.getElementById('pecahan-koin').value = 0;
+      hitungTotalLaci();
+    }
+  </script>
+</div></div></main></div></body></html>

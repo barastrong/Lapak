@@ -102,20 +102,20 @@ export function ProductTable({ products, selected, onToggle, onToggleAll }: Prod
                     )}
                   </td>
                   <td className="py-3.5 px-4 text-center">
-                    <div className="inline-flex items-center gap-1">
+                    <div className="inline-flex items-center gap-1.5">
                       <button
                         type="button"
-                        className="p-1.5 rounded hover:bg-primary/10 text-primary transition-colors"
+                        className="p-2 rounded-lg hover:bg-primary/10 text-primary transition-colors"
                         title="Ubah Harga Cepat"
                       >
-                        <Icon name="edit" className="text-base" />
+                        <Icon name="edit" className="text-lg" />
                       </button>
                       <button
                         type="button"
-                        className="p-1.5 rounded hover:bg-on-surface-variant/10 text-on-surface-variant transition-colors"
+                        className="p-2 rounded-lg hover:bg-on-surface-variant/10 text-on-surface-variant transition-colors"
                         title="Riwayat Kulak"
                       >
-                        <Icon name="history" className="text-base" />
+                        <Icon name="history" className="text-lg" />
                       </button>
                     </div>
                   </td>

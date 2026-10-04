@@ -106,19 +106,21 @@ export function StockTable({ items, query, onQuery, onOpenAdjustment }: StockTab
                   {row.status === "Habis" || row.status === "Menipis" ? (
                     <button
                       type="button"
-                      className="text-primary hover:text-primary-container p-1 rounded hover:bg-surface-container transition-colors"
+                      className="inline-flex items-center gap-1 text-primary hover:text-primary-container px-2 py-1.5 rounded-lg hover:bg-surface-container transition-colors text-xs font-label-code"
                       title="Tambah ke Catatan Pasar"
                     >
                       <Icon name="playlist_add" className="text-lg" />
+                      <span className="hidden lg:inline">Kulak</span>
                     </button>
                   ) : (
                     <button
                       type="button"
                       onClick={() => onOpenAdjustment(row)}
-                      className="text-on-surface-variant hover:text-on-surface p-1 rounded hover:bg-surface-container transition-colors"
+                      className="inline-flex items-center gap-1 text-on-surface-variant hover:text-on-surface px-2 py-1.5 rounded-lg hover:bg-surface-container transition-colors text-xs font-label-code"
                       title="Sesuaikan Stok"
                     >
                       <Icon name="edit" className="text-lg" />
+                      <span className="hidden lg:inline">Koreksi</span>
                     </button>
                   )}
                 </td>

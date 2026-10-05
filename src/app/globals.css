@@ -159,11 +159,12 @@ body {
   src: url("/fonts/material-symbols-outlined.ttf") format("truetype");
 }
 
+/* Sengaja di luar @layer: harus mengalahkan `line-height` dari utility `text-*`.
+   JANGAN deklarasikan font-size di sini — itu yang bikin semua `text-*` mati. */
 .material-symbols-outlined {
   font-family: "Material Symbols Outlined";
   font-style: normal;
   font-weight: normal;
-  font-size: inherit;
   line-height: 1;
   letter-spacing: normal;
   text-transform: none;
@@ -172,6 +173,7 @@ body {
   word-wrap: normal;
   direction: ltr;
   -webkit-font-feature-settings: "liga";
+  font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }

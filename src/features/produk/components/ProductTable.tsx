@@ -9,16 +9,16 @@ type ProductTableProps = {
   onToggleAll: (ids: string[]) => void;
 };
 
-/** Tabel dense katalog produk dengan baris yang bisa dipilih massal. */
 export function ProductTable({ products, selected, onToggle, onToggleAll }: ProductTableProps) {
   const allSelected = products.length > 0 && products.every((p) => selected.includes(p.id));
+
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-on-surface/10 overflow-hidden">
+    <div className="bg-surface-container-lowest rounded-2xl shadow-sm border border-surface-container overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-[#F4F4F0] border-b border-on-surface/15 text-on-surface-variant font-label-code text-[0.8rem] uppercase tracking-wider select-none">
-              <th className="py-3 px-4 w-10 text-center">
+            <tr className="bg-surface-container-low border-b border-surface-container text-on-surface-variant font-label-code text-xs uppercase tracking-wider select-none">
+              <th className="py-3.5 px-4 w-10 text-center">
                 <input
                   type="checkbox"
                   className="w-4 h-4 rounded accent-primary cursor-pointer"
@@ -27,21 +27,23 @@ export function ProductTable({ products, selected, onToggle, onToggleAll }: Prod
                   aria-label="Pilih semua"
                 />
               </th>
-              <th className="py-3 px-4 min-w-[280px]">Nama Produk & Satuan</th>
-              <th className="py-3 px-4 min-w-[130px]">Kategori</th>
-              <th className="py-3 px-4 text-right min-w-[140px]">Harga Beli (Kulak)</th>
-              <th className="py-3 px-4 text-right min-w-[140px]">Harga Jual Ecer</th>
-              <th className="py-3 px-4 text-right min-w-[170px]">Margin Untung</th>
-              <th className="py-3 px-4 text-center min-w-[130px]">Sisa Stok</th>
-              <th className="py-3 px-4 text-center min-w-[110px]">Aksi</th>
+              <th className="py-3.5 px-4 min-w-[280px]">Nama Produk & SKU</th>
+              <th className="py-3.5 px-4 min-w-[130px]">Kategori</th>
+              <th className="py-3.5 px-4 text-right min-w-[140px]">Harga Beli (Kulak)</th>
+              <th className="py-3.5 px-4 text-right min-w-[140px]">Harga Jual Ecer</th>
+              <th className="py-3.5 px-4 text-right min-w-[170px]">Margin Untung</th>
+              <th className="py-3.5 px-4 text-center min-w-[130px]">Sisa Stok</th>
+              <th className="py-3.5 px-4 text-center min-w-[110px]">Aksi</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-on-surface/10 text-body-sm">
+          <tbody className="divide-y divide-surface-container text-body-sm text-on-surface">
             {products.map((p) => {
               const margin = p.sellPrice > 0 ? ((p.sellPrice - p.buyPrice) / p.sellPrice) * 100 : 0;
               const lowStock = p.stock < p.minStock;
+              const profitAmount = p.sellPrice - p.buyPrice;
+
               return (
-                <tr key={p.id} className="hover:bg-[#FAFAF7] transition-colors group">
+                <tr key={p.id} className="hover:bg-surface-bright transition-colors group">
                   <td className="py-3.5 px-4 text-center">
                     <input
                       type="checkbox"
@@ -52,70 +54,79 @@ export function ProductTable({ products, selected, onToggle, onToggleAll }: Prod
                     />
                   </td>
                   <td className="py-3.5 px-4">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded bg-[#FAFAF7] border border-on-surface/10 flex items-center justify-center text-primary font-bold text-xs shrink-0">
-                        <Icon name={p.icon} className="text-base" />
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center text-primary font-bold shrink-0">
+                        <Icon name={p.icon} className="text-lg" />
                       </div>
                       <div className="flex flex-col min-w-0">
-                        <span className="font-headline-sm text-[0.975rem] font-semibold text-on-surface group-hover:text-primary transition-colors">
+                        <span className="font-headline-sm text-body-md font-semibold text-on-surface group-hover:text-primary transition-colors">
                           {p.name}
                         </span>
                         <div className="flex items-center gap-2 mt-0.5">
-                          <span className="text-body-sm text-on-surface-variant">
-                            Satuan {p.unitLabel}
+                          <span className="text-xs text-on-surface-variant">
+                            Satuan: {p.unitLabel}
                           </span>
-                          <span className="text-on-surface-variant/60 text-xs">•</span>
-                          <span className="font-label-code text-[0.75rem] text-on-surface-variant bg-[#FAFAF7] border border-on-surface/10 px-1.5 py-0.2 rounded">
+                          <span className="text-outline-variant text-xs">•</span>
+                          <span className="font-label-code text-[11px] text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded">
                             {p.sku}
                           </span>
                         </div>
                       </div>
                     </div>
                   </td>
-                  <td className="py-3.5 px-4">
-                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#FAFAF7] text-on-surface border border-on-surface/10">
+                  <td className="py-3.5 px-4 whitespace-nowrap">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-surface-container-high text-on-surface">
                       {p.category}
                     </span>
                   </td>
-                  <td className="py-3.5 px-4 text-right font-label-numeric text-on-surface-variant">
+                  <td className="py-3.5 px-4 text-right font-label-numeric text-on-surface-variant whitespace-nowrap">
                     {formatRupiah(p.buyPrice)}
                   </td>
-                  <td className="py-3.5 px-4 text-right font-label-numeric font-bold text-on-surface">
+                  <td className="py-3.5 px-4 text-right font-label-numeric font-bold text-on-surface whitespace-nowrap">
                     {formatRupiah(p.sellPrice)}
                   </td>
-                  <td className="py-3.5 px-4 text-right">
-                    <span className="inline-flex items-center gap-1 font-label-code text-[0.8rem] text-tertiary bg-tertiary-fixed/40 border border-tertiary/30 px-2 py-0.5 rounded">
+                  <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                    <span
+                      className={`inline-flex items-center gap-1 font-label-code text-xs px-2.5 py-1 rounded-full font-bold ${
+                        margin >= 18
+                          ? "bg-tertiary-fixed text-on-tertiary-fixed"
+                          : margin >= 12
+                          ? "bg-tertiary-container/20 text-tertiary"
+                          : "bg-secondary-fixed text-on-secondary-fixed"
+                      }`}
+                    >
                       <Icon name="trending_up" className="text-xs" />
-                      +{margin.toFixed(1).replace(".", ",")}% (Rp {(p.sellPrice - p.buyPrice).toLocaleString("id-ID")})
+                      <span>+{margin.toFixed(1).replace(".", ",")}%</span>
+                      <span className="opacity-80 font-normal">({formatRupiah(profitAmount)})</span>
                     </span>
                   </td>
-                  <td className="py-3.5 px-4 text-center">
+                  <td className="py-3.5 px-4 text-center whitespace-nowrap">
                     {lowStock ? (
-                      <span className="inline-flex items-center gap-1 font-label-code text-[0.8rem] text-error bg-error-container/60 border border-error/30 px-2 py-0.5 rounded font-bold">
+                      <span className="inline-flex items-center gap-1 font-label-code text-xs text-error bg-error-container px-2.5 py-0.5 rounded-full font-bold">
                         <Icon name="warning" className="text-xs" />
-                        Sisa {p.stock} {p.unitLabel}
+                        <span>Sisa {p.stock}</span>
                       </span>
                     ) : (
-                      <span className="font-label-code text-[0.825rem] text-on-surface font-medium">
+                      <span className="inline-flex items-center font-label-code text-xs text-on-surface bg-surface-container px-2.5 py-0.5 rounded-full font-medium">
                         {p.stock} {p.unitLabel}
                       </span>
                     )}
                   </td>
-                  <td className="py-3.5 px-4 text-center">
-                    <div className="inline-flex items-center gap-1.5">
+                  <td className="py-3.5 px-4 text-center whitespace-nowrap">
+                    <div className="inline-flex items-center gap-1">
                       <button
                         type="button"
-                        className="p-2 rounded-lg hover:bg-primary/10 text-primary transition-colors"
-                        title="Ubah Harga Cepat"
+                        className="w-8 h-8 rounded-lg hover:bg-primary/10 text-primary flex items-center justify-center transition-colors cursor-pointer"
+                        title="Ubah Produk"
                       >
-                        <Icon name="edit" className="text-lg" />
+                        <Icon name="edit" className="text-base" />
                       </button>
                       <button
                         type="button"
-                        className="p-2 rounded-lg hover:bg-on-surface-variant/10 text-on-surface-variant transition-colors"
-                        title="Riwayat Kulak"
+                        className="w-8 h-8 rounded-lg hover:bg-surface-container text-on-surface-variant flex items-center justify-center transition-colors cursor-pointer"
+                        title="Riwayat Stok"
                       >
-                        <Icon name="history" className="text-lg" />
+                        <Icon name="history" className="text-base" />
                       </button>
                     </div>
                   </td>

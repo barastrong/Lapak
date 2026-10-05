@@ -97,34 +97,76 @@ export function PengaturanScreen() {
         </div>
 
         <div className="lg:col-span-5 flex flex-col gap-space-md">
-          <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
-            <div className="flex items-center gap-space-xs">
-              <Icon name="swap_horiz" className="text-primary text-xl" />
-              <h2 className="font-headline-md text-headline-md text-on-surface">Pindah Toko / Cabang</h2>
+          <div className="bg-surface-container-lowest rounded-2xl shadow-sm border border-surface-container p-space-md sm:p-space-lg flex flex-col gap-space-md">
+            <div className="flex items-center gap-space-sm pb-1 border-b border-surface-container">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                <Icon name="swap_horiz" className="text-2xl" />
+              </div>
+              <div>
+                <h2 className="font-headline-md text-headline-md text-on-surface font-bold">Pindah Toko / Cabang</h2>
+                <p className="text-body-xs sm:text-body-sm text-on-surface-variant">
+                  Ganti konteks kasir & pembukuan ke unit toko lain.
+                </p>
+              </div>
             </div>
-            <p className="text-body-sm text-on-surface-variant">
-              Pilih toko lain untuk berpindah konteks kasir di aplikasi ini (data contoh).
-            </p>
-            <div className="flex flex-col gap-2">
+
+            <div className="flex flex-col gap-3">
               {[profile, ...presets]
                 .filter((v, i, a) => a.findIndex((x) => x.name === v.name) === i)
-                .map((s) => (
-                  <button
-                    key={s.name}
-                    type="button"
-                    onClick={() => setActiveStore(s.name)}
-                    className={`flex flex-col items-start gap-0.5 rounded-xl p-space-sm text-left transition-all ${
-                      (activeStore ?? profile.name) === s.name
-                        ? "bg-primary-container text-on-primary"
-                        : "bg-surface-container-low hover:bg-surface-container-lowest"
-                    }`}
-                  >
-                    <span className="font-label-ui text-label-ui font-semibold">{s.name}</span>
-                    <span className="text-body-sm text-on-surface-variant truncate w-full">
-                      {s.kind} • {s.branch}
-                    </span>
-                  </button>
-                ))}
+                .map((s) => {
+                  const isActive = (activeStore ?? profile.name) === s.name;
+                  const iconName = s.kind.includes("Laundry") ? "local_laundry_service" : s.kind.includes("Sembako") ? "store" : "storefront";
+                  return (
+                    <button
+                      key={s.name}
+                      type="button"
+                      onClick={() => setActiveStore(s.name)}
+                      className={`relative flex flex-col gap-2 rounded-2xl p-4 text-left transition-all cursor-pointer border-2 ${
+                        isActive
+                          ? "border-primary bg-primary/5 shadow-xs"
+                          : "border-surface-container bg-surface-container-lowest hover:border-outline-variant hover:bg-surface-container-low/60"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
+                              isActive ? "bg-primary text-on-primary" : "bg-surface-container text-on-surface-variant"
+                            }`}
+                          >
+                            <Icon name={iconName} className="text-lg" />
+                          </div>
+                          <div>
+                            <span className="font-headline-sm text-body-md font-bold text-on-surface block">
+                              {s.name}
+                            </span>
+                            <span className="text-xs text-on-surface-variant">
+                              {s.branch}
+                            </span>
+                          </div>
+                        </div>
+
+                        {isActive ? (
+                          <span className="inline-flex items-center gap-1 bg-primary text-on-primary text-[11px] font-bold px-2.5 py-0.5 rounded-full shrink-0 shadow-xs">
+                            <Icon name="check" className="text-xs" />
+                            <span>Aktif</span>
+                          </span>
+                        ) : (
+                          <span className="text-[11px] font-semibold text-primary hover:underline shrink-0">
+                            Pilih Cabang →
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="flex items-center gap-2 pt-1 border-t border-surface-container/60 text-xs text-on-surface-variant">
+                        <span className="px-2 py-0.5 rounded bg-surface-container font-medium text-[11px]">
+                          {s.kind}
+                        </span>
+                        <span className="truncate">{s.address}</span>
+                      </div>
+                    </button>
+                  );
+                })}
             </div>
           </div>
         </div>

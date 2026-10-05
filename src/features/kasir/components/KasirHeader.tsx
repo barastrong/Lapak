@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Icon } from "@/components/ui/Icon";
+import { BarcodeScannerModal } from "@/components/ui/BarcodeScannerModal";
 import type { ShiftSummary } from "@/features/kasir/types";
 import type { Product, ProductCategory } from "@/types/product";
 
@@ -17,7 +19,6 @@ type KasirHeaderProps = {
   onAdd: (p: Product) => void;
 };
 
-/** Bagian atas layar kasir: judul + tombol aksi + bilah pencarian & kategori. */
 export function KasirHeader({
   shift,
   categories,
@@ -26,7 +27,10 @@ export function KasirHeader({
   onOpenPayment,
   query,
   onQueryChange,
+  products,
+  onAdd,
 }: KasirHeaderProps) {
+  const [scannerOpen, setScannerOpen] = useState(false);
   return (
     <>
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between pb-space-md gap-space-md">
@@ -57,7 +61,7 @@ export function KasirHeader({
             className="flex-1 md:flex-none flex items-center justify-center gap-space-xs px-space-md py-2.5 bg-surface-container-lowest text-on-surface rounded-xl hover:bg-surface-container shadow-sm transition-all text-body-sm font-label-ui"
           >
             <Icon name="pause_circle" className="text-base" />
-            <span>Tahan Nota (F6)</span>
+            <span>Tahan Nota</span>
           </button>
           <button
             type="button"
@@ -65,10 +69,7 @@ export function KasirHeader({
             className="flex-1 md:flex-none flex items-center justify-center gap-space-xs px-space-lg py-2.5 bg-primary-container text-on-primary rounded-xl hover:bg-primary transition-all shadow-md active:translate-y-0.5 font-label-ui text-body-md font-bold"
           >
             <Icon name="payments" className="text-lg" />
-            <span>F2 Bayar langsung</span>
-            <kbd className="ml-1 bg-primary px-1.5 py-0.5 rounded text-inverse-primary font-label-code text-xs">
-              F2
-            </kbd>
+            <span>Bayar Langsung</span>
           </button>
         </div>
       </div>
@@ -80,25 +81,21 @@ export function KasirHeader({
               className="absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl"
             />
             <input
-              className="w-full pl-11 pr-20 py-2.5 bg-surface-container-low text-on-surface rounded-lg font-body-md text-body-md placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container transition-all"
+              className="w-full pl-11 pr-4 py-2.5 bg-surface-container-low text-on-surface rounded-lg font-body-md text-body-md placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container transition-all"
               id="katalog-search"
               placeholder="Cari nama barang atau scan barcode..."
               type="text"
               value={query}
               onChange={(e) => onQueryChange(e.target.value)}
             />
-            <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1">
-              <kbd className="font-label-code text-xs px-1.5 py-0.5 bg-surface-container-highest rounded text-on-surface-variant">
-                [/]
-              </kbd>
-            </div>
           </div>
           <button
             type="button"
-            className="px-space-md py-2.5 bg-surface-container text-primary font-label-code text-label-code rounded-lg flex items-center justify-center gap-1.5 hover:bg-surface-container-high transition-colors"
+            onClick={() => setScannerOpen(true)}
+            className="px-space-md py-2.5 bg-surface-container text-primary font-label-code text-label-code rounded-lg flex items-center justify-center gap-1.5 hover:bg-surface-container-high transition-colors cursor-pointer"
           >
             <Icon name="barcode_scanner" className="text-lg" />
-            <span>[F1] Scan</span>
+            <span>Scan Barcode</span>
           </button>
         </div>
         <div className="flex items-center gap-2 overflow-x-auto pb-1">
@@ -119,6 +116,13 @@ export function KasirHeader({
           ))}
         </div>
       </div>
+
+      <BarcodeScannerModal
+        open={scannerOpen}
+        onClose={() => setScannerOpen(false)}
+        products={products}
+        onAddProduct={onAdd}
+      />
     </>
   );
 }

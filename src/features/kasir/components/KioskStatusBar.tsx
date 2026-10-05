@@ -16,9 +16,6 @@ export function KioskStatusBar() {
         <span>
           Laci Uang: <span className="text-tertiary font-semibold">{siteConfig.cashDrawer}</span>
         </span>
-        <span className="hidden sm:inline">
-          Shortcut: <kbd className="bg-surface-container-highest px-1 rounded">F1-F12</kbd>
-        </span>
       </div>
     </div>
   );

@@ -11,7 +11,6 @@ type ProductFilterBarProps = {
   categories: string[];
 };
 
-/** Bilah filter produk: pencarian + dropdown kategori & margin + tombol reset. */
 export function ProductFilterBar({
   search,
   onSearch,
@@ -22,21 +21,25 @@ export function ProductFilterBar({
   onReset,
   categories,
 }: ProductFilterBarProps) {
+  const handlePrintPriceList = () => {
+    window.print();
+  };
+
   return (
-    <div className="bg-white rounded-xl p-3 shadow-sm border border-on-surface/10 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+    <div className="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm border border-surface-container flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
       <div className="flex-1 flex flex-wrap md:flex-nowrap items-center gap-2">
         <div className="relative w-full md:w-80">
-          <Icon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg pointer-events-none" />
+          <Icon
+            name="search"
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg pointer-events-none"
+          />
           <input
-            className="w-full bg-[#FAFAF7] border border-on-surface/15 rounded-lg pl-9 pr-8 py-2 text-body-sm text-on-surface placeholder:text-on-surface-variant/70 focus:outline-none focus:border-primary focus:bg-white transition-all"
+            className="w-full bg-surface-container-low border border-surface-container rounded-xl pl-9 pr-3 py-2 text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all"
             placeholder="Cari berdasarkan nama produk, SKU, atau barcode..."
             type="text"
             value={search}
             onChange={(e) => onSearch(e.target.value)}
           />
-          <kbd className="absolute right-2.5 top-1/2 -translate-y-1/2 font-label-code text-[0.7rem] bg-[#E2E4E8] text-on-surface-variant px-1 py-0.5 rounded">
-            /
-          </kbd>
         </div>
         <SelectBox
           value={category}
@@ -58,19 +61,20 @@ export function ProductFilterBar({
         <button
           type="button"
           onClick={onReset}
-          className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-on-surface-variant hover:text-on-surface font-label-ui text-label-ui"
+          className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-on-surface-variant hover:text-on-surface font-label-ui text-label-ui rounded-lg hover:bg-surface-container transition-colors cursor-pointer"
         >
           <Icon name="refresh" className="text-sm" />
           <span>Reset</span>
         </button>
       </div>
-      <div className="flex items-center justify-end gap-2 border-t lg:border-t-0 pt-2 lg:pt-0 border-on-surface/10">
+      <div className="flex items-center justify-end gap-2 border-t lg:border-t-0 pt-2 lg:pt-0 border-surface-container">
         <button
           type="button"
-          className="flex items-center gap-2 bg-[#FAFAF7] hover:bg-[#F2B705]/10 text-on-surface border border-on-surface/15 px-3.5 py-2 rounded-lg font-label-ui text-label-ui transition-colors"
+          onClick={handlePrintPriceList}
+          className="flex items-center gap-2 bg-surface-container-low hover:bg-surface-container text-on-surface border border-surface-container px-3.5 py-2 rounded-xl font-label-ui text-label-ui transition-colors cursor-pointer shadow-xs"
         >
-          <Icon name="print" className="text-base text-secondary" />
-          <span>Cetak daftar harga kertas (PDF)</span>
+          <Icon name="print" className="text-base text-primary" />
+          <span>Cetak Daftar Harga</span>
         </button>
       </div>
     </div>
@@ -92,7 +96,7 @@ function SelectBox({
   return (
     <div className="relative w-full sm:w-auto">
       <select
-        className="w-full bg-[#FAFAF7] border border-on-surface/15 rounded-lg pl-3 pr-8 py-2 text-body-sm text-on-surface focus:outline-none focus:border-primary appearance-none cursor-pointer"
+        className="w-full bg-surface-container-low border border-surface-container rounded-xl pl-3 pr-8 py-2 text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer"
         value={value}
         onChange={(e) => onChange(e.target.value)}
       >

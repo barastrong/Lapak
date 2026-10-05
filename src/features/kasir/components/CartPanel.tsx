@@ -175,7 +175,7 @@ function QuickTender({ onBayar }: { onBayar: () => void }) {
         className="py-3.5 w-full bg-primary-container hover:bg-primary text-on-primary rounded-xl font-headline-md text-headline-sm flex items-center justify-center gap-2 shadow-md active:translate-y-0.5 transition-all"
       >
         <Icon name="payments" className="text-xl" />
-        <span>Selesaikan Transaksi (F2)</span>
+        <span>Selesaikan Transaksi</span>
       </button>
       <div className="grid grid-cols-2 gap-2">
         <button
@@ -183,18 +183,18 @@ function QuickTender({ onBayar }: { onBayar: () => void }) {
           className="py-2.5 px-2 rounded-xl bg-error-container text-on-error-container font-label-ui text-xs font-semibold flex items-center justify-center gap-1 hover:bg-opacity-80 transition-colors"
         >
           <Icon name="edit_note" className="text-base" />
-          <span>Catat Kasbon (F4)</span>
+          <span>Catat Kasbon</span>
         </button>
         <button
           type="button"
           className="py-2.5 px-2 rounded-xl bg-surface-container text-on-surface font-label-ui text-xs font-semibold flex items-center justify-center gap-1 hover:bg-surface-container-high transition-colors"
         >
           <Icon name="receipt_long" className="text-base" />
-          <span>Cetak Ulang (F8)</span>
+          <span>Cetak Ulang</span>
         </button>
       </div>
       <p className="text-center font-label-code text-[11px] text-on-surface-variant pt-1">
-        Semua aksi dapat dioperasikan via keyboard kasir tanpa mouse.
+        Transaksi cepat, cetak struk thermal dan nota digital.
       </p>
     </div>
   );

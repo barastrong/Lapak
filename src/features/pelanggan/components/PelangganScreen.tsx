@@ -7,6 +7,7 @@ import { formatRupiah } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { usePelanggan } from "@/features/pelanggan/hooks/usePelanggan";
 import { pelangganTiersMock } from "@/features/pelanggan/data/pelanggan.mock";
+import { exportToCsv } from "@/lib/export";
 import type { PelangganTier } from "@/features/pelanggan/types";
 
 const TIER_STYLE: Record<PelangganTier, string> = {
@@ -28,6 +29,22 @@ export function PelangganScreen() {
     );
   }
 
+  const handleExport = () => {
+    exportToCsv(
+      "daftar-pelanggan-warung",
+      ["Nama", "Nomor HP", "Alamat", "Kategori", "Total Belanja (Rp)", "Utang Aktif (Rp)", "Terakhir Belanja"],
+      list.map((p) => [
+        p.name,
+        p.phone,
+        p.address,
+        p.tier,
+        p.totalBelanja,
+        p.utangAktif,
+        p.terakhirBelanja,
+      ])
+    );
+  };
+
   return (
     <div className="flex flex-col w-full gap-space-md">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
@@ -43,7 +60,7 @@ export function PelangganScreen() {
           </p>
         </div>
         <div className="flex items-center gap-space-sm shrink-0">
-          <Button variant="surfaceContainer">
+          <Button variant="surfaceContainer" onClick={handleExport}>
             <Icon name="download" className="text-lg" />
             Ekspor
           </Button>

@@ -44,7 +44,7 @@ export const featureModulesMock: Pick<FeatureModule, "badge" | "badgeClassName" 
     badge: "MODUL 01",
     badgeClassName: "text-primary",
     title: "Kasir",
-    desc: "Ketik nama barang atau tekan F2 untuk langsung bayar dan cetak nota kertas.",
+    desc: "Ketik nama barang untuk langsung bayar dan cetak nota kertas.",
   },
   {
     badge: "MODUL 02",

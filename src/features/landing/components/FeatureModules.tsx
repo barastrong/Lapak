@@ -7,9 +7,6 @@ const MOCKUPS: Record<number, React.ReactNode> = {
     <div className="bg-surface-container-low p-space-sm rounded-xl flex flex-col gap-space-xs select-none">
       <div className="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container-lowest px-2 py-1.5 rounded-lg shadow-sm">
         <span className="font-label-ui text-[0.75rem]">Cari: &quot;Kopi...&quot;</span>
-        <span className="font-label-code text-[0.7rem] bg-surface-dim px-1.5 py-0.5 rounded text-on-surface">
-          Enter
-        </span>
       </div>
       <div className="flex flex-col gap-1 my-1">
         {[
@@ -37,7 +34,7 @@ const MOCKUPS: Record<number, React.ReactNode> = {
           type="button"
           className="bg-primary-container text-on-primary font-label-ui text-[0.8125rem] px-3 py-1.5 rounded-lg font-bold shadow hover:bg-primary transition-colors"
         >
-          [F2] Bayar Cepat
+          Bayar Cepat
         </button>
       </div>
     </div>

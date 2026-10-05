@@ -1,5 +1,6 @@
 import { Icon } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
+import { exportToCsv } from "@/lib/export";
 import type { PeriodOption } from "@/features/laporan/types";
 
 type LaporanHeaderProps = {
@@ -8,8 +9,20 @@ type LaporanHeaderProps = {
   onPeriod: (p: PeriodOption) => void;
 };
 
-/** Header laporan: judul + kontrol periode/rentang tanggal/kasir/ekspor. */
 export function LaporanHeader({ active, periods, onPeriod }: LaporanHeaderProps) {
+  const handleExport = () => {
+    exportToCsv(
+      `ringkasan-laporan-${active.toLowerCase().replace(/\s+/g, "-")}`,
+      ["Keterangan", "Nilai", "Periode"],
+      [
+        ["Omzet Kotor", "Rp 42.850.000", active],
+        ["Laba Bersih", "Rp 6.427.500", active],
+        ["Transaksi Sukses", "348", active],
+        ["Kasbon Baru", "Rp 485.000", active],
+        ["Rata-rata Nota", "Rp 123.132", active],
+      ]
+    );
+  };
   return (
     <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-space-md">
       <div className="flex flex-col gap-space-xs">
@@ -59,7 +72,8 @@ export function LaporanHeader({ active, periods, onPeriod }: LaporanHeaderProps)
         </div>
         <button
           type="button"
-          className="flex items-center gap-space-xs px-space-md py-1.5 bg-primary-container text-on-primary rounded-lg font-label-ui text-label-ui hover:bg-primary transition-all active:translate-y-0.5 shadow-sm"
+          onClick={handleExport}
+          className="flex items-center gap-space-xs px-space-md py-1.5 bg-primary-container text-on-primary rounded-lg font-label-ui text-label-ui hover:bg-primary transition-all active:translate-y-0.5 shadow-sm cursor-pointer"
         >
           <Icon name="download" className="text-base" />
           <span>Unduh Excel (.xlsx)</span>

@@ -59,7 +59,6 @@ export function StokScreen() {
           <Button>
             <Icon name="add_shopping_cart" className="text-lg" />
             + Catat Kulakan Masuk
-            <kbd className="ml-1 px-1.5 py-0.5 bg-on-primary/20 rounded font-label-code text-xs">F5</kbd>
           </Button>
         </div>
       </div>

@@ -10,12 +10,40 @@ import { BulkActionBar } from "@/features/produk/components/BulkActionBar";
 import { useProducts } from "@/features/produk/hooks/useProducts";
 import { productCategoriesMock } from "@/features/produk/data/products.mock";
 import { siteConfig } from "@/config/site";
+import { exportToCsv } from "@/lib/export";
 import type { Product } from "@/types/product";
 
-/** Perakit layar katalog produk: header, filter, tabel, paginasi, aksi massal. */
 export function ProdukScreen() {
   const state = useProducts();
   const [modalOpen, setModalOpen] = useState(false);
+
+  const handleExport = () => {
+    exportToCsv(
+      "katalog-produk-lapak",
+      [
+        "ID Produk",
+        "Nama Produk",
+        "Kategori",
+        "SKU",
+        "Harga Beli (Rp)",
+        "Harga Jual (Rp)",
+        "Stok",
+        "Min Stok",
+        "Satuan",
+      ],
+      state.products.map((p) => [
+        p.id,
+        p.name,
+        p.category,
+        p.sku,
+        p.buyPrice,
+        p.sellPrice,
+        p.stock,
+        p.minStock,
+        p.unitLabel,
+      ])
+    );
+  };
 
   if (state.isLoading || state.products.length === 0) {
     return (
@@ -25,39 +53,103 @@ export function ProdukScreen() {
     );
   }
 
+  const lowStockCount = state.products.filter((p) => p.stock < p.minStock).length;
+
   return (
-    <div className="flex flex-col gap-6 w-full">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-on-surface/10">
-        <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-2">
-            <span className="inline-block w-2.5 h-2.5 bg-primary rounded-full"></span>
-            <span className="font-label-code text-label-code text-primary tracking-wider uppercase">
-              Buku Kas & Stok Aktif
+    <div className="flex flex-col gap-space-md w-full">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm border border-surface-container">
+        <div className="flex flex-col gap-space-xs">
+          <div className="flex items-center gap-space-xs">
+            <span className="font-headline-lg text-headline-lg text-on-surface">
+              Katalog Produk & Harga Jual
+            </span>
+            <span className="bg-surface-container-high text-primary px-2.5 py-0.5 rounded-full font-label-code text-label-code text-xs">
+              {siteConfig.storeName}
             </span>
           </div>
-          <h1 className="font-headline-xl text-headline-xl text-on-surface tracking-tight">
-            Katalog Produk & Harga
-          </h1>
-          <p className="flex items-center gap-2 text-body-md text-on-surface-variant">
-            <span>Total 142 produk aktif di {siteConfig.storeName}</span>
-            <span className="text-on-surface-variant/60">•</span>
-            <span className="font-label-code text-label-code text-tertiary bg-tertiary-fixed/40 px-2 py-0.5 rounded">
-              Rata-rata Margin Toko: 15,2%
-            </span>
+          <p className="text-body-sm text-on-surface-variant">
+            Kelola harga beli modal, harga ecer, keuntungan margin, dan ketersediaan stok produk.
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="surface">
-            <Icon name="file_download" className="text-base" />
+        <div className="flex items-center gap-space-sm shrink-0">
+          <Button variant="surfaceContainer" onClick={handleExport}>
+            <Icon name="download" className="text-lg" />
             Ekspor CSV
           </Button>
           <Button onClick={() => setModalOpen(true)}>
-            <Icon name="add" className="text-base" />
-            Tambah produk baru
-            <kbd className="font-label-code text-[0.75rem] leading-none bg-white/20 text-white px-1.5 py-0.5 rounded ml-1">
-              F3
-            </kbd>
+            <Icon name="add" className="text-lg" />
+            + Tambah Produk Baru
           </Button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+        <div className="bg-surface-container-lowest p-space-md rounded-2xl shadow-sm border border-surface-container flex items-center justify-between">
+          <div className="flex flex-col">
+            <span className="text-xs font-label-code text-on-surface-variant uppercase tracking-wider">
+              Total Produk
+            </span>
+            <span className="font-headline-lg text-headline-lg text-on-surface font-extrabold mt-0.5">
+              142 Item
+            </span>
+            <span className="text-xs text-on-surface-variant mt-1">
+              Semua produk aktif di etalase
+            </span>
+          </div>
+          <div className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+            <Icon name="inventory_2" className="text-2xl" />
+          </div>
+        </div>
+
+        <div className="bg-surface-container-lowest p-space-md rounded-2xl shadow-sm border border-surface-container flex items-center justify-between">
+          <div className="flex flex-col">
+            <span className="text-xs font-label-code text-on-surface-variant uppercase tracking-wider">
+              Rata-rata Margin
+            </span>
+            <span className="font-headline-lg text-headline-lg text-tertiary font-extrabold mt-0.5">
+              15,2%
+            </span>
+            <span className="text-xs text-on-surface-variant mt-1">
+              Kategori margin sehat warung
+            </span>
+          </div>
+          <div className="w-11 h-11 rounded-xl bg-tertiary/10 text-tertiary flex items-center justify-center shrink-0">
+            <Icon name="trending_up" className="text-2xl" />
+          </div>
+        </div>
+
+        <div className="bg-surface-container-lowest p-space-md rounded-2xl shadow-sm border border-surface-container flex items-center justify-between">
+          <div className="flex flex-col">
+            <span className="text-xs font-label-code text-on-surface-variant uppercase tracking-wider">
+              Stok Menipis / Kritis
+            </span>
+            <span className="font-headline-lg text-headline-lg text-error font-extrabold mt-0.5">
+              {lowStockCount} Produk
+            </span>
+            <span className="text-xs text-on-surface-variant mt-1">
+              Perlu kulakan pasar subuh
+            </span>
+          </div>
+          <div className="w-11 h-11 rounded-xl bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+            <Icon name="warning" className="text-2xl text-error" />
+          </div>
+        </div>
+
+        <div className="bg-surface-container-lowest p-space-md rounded-2xl shadow-sm border border-surface-container flex items-center justify-between">
+          <div className="flex flex-col">
+            <span className="text-xs font-label-code text-on-surface-variant uppercase tracking-wider">
+              Total Kategori
+            </span>
+            <span className="font-headline-lg text-headline-lg text-secondary font-extrabold mt-0.5">
+              6 Kategori
+            </span>
+            <span className="text-xs text-on-surface-variant mt-1">
+              Sembako, Minuman, Makanan, dll
+            </span>
+          </div>
+          <div className="w-11 h-11 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+            <Icon name="category" className="text-2xl" />
+          </div>
         </div>
       </div>
 
@@ -83,7 +175,7 @@ export function ProdukScreen() {
         onToggleAll={state.toggleAll}
       />
 
-      <div className="p-4 bg-[#FAFAF7] border-t border-on-surface/10 flex flex-col md:flex-row items-center justify-between gap-4 text-body-sm">
+      <div className="p-4 bg-surface-container-lowest rounded-2xl shadow-sm border border-surface-container flex flex-col md:flex-row items-center justify-between gap-4 text-body-sm">
         <div className="flex items-center gap-4 text-on-surface-variant">
           <span>
             Menampilkan{" "}
@@ -92,10 +184,14 @@ export function ProdukScreen() {
             </strong>{" "}
             dari <strong className="text-on-surface font-label-code">142</strong> produk
           </span>
-          <span className="hidden sm:inline-block text-on-surface-variant/60">•</span>
-          <span className="hidden sm:flex items-center gap-1.5 font-label-code text-[0.75rem] text-on-surface">
-            <span className="w-2 h-2 rounded-full bg-tertiary"></span> Margin Sehat
-            <span className="w-2 h-2 rounded-full bg-error ml-2"></span> Stok Menipis (&lt;5)
+          <span className="hidden sm:inline-block text-outline-variant">•</span>
+          <span className="hidden sm:flex items-center gap-2 font-label-code text-xs text-on-surface">
+            <span className="inline-flex items-center gap-1">
+              <span className="w-2.5 h-2.5 rounded-full bg-tertiary"></span> Margin Sehat (&gt;12%)
+            </span>
+            <span className="inline-flex items-center gap-1 ml-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-error"></span> Stok Menipis (&lt;5)
+            </span>
           </span>
         </div>
         <PaginationFooter
@@ -129,12 +225,12 @@ function PaginationFooter({
   onPage: (p: number) => void;
 }) {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-1.5 font-label-code">
       <button
         type="button"
         disabled={page <= 1}
         onClick={() => onPage(page - 1)}
-        className="w-8 h-8 rounded border border-on-surface/15 flex items-center justify-center text-on-surface-variant hover:bg-white disabled:opacity-30 disabled:cursor-not-allowed"
+        className="w-8 h-8 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
         aria-label="Sebelumnya"
       >
         <Icon name="chevron_left" className="text-base" />
@@ -145,11 +241,11 @@ function PaginationFooter({
             key={n}
             type="button"
             onClick={() => onPage(n)}
-            className={
+            className={`w-8 h-8 rounded-lg text-xs font-bold flex items-center justify-center transition-colors cursor-pointer ${
               n === page
-                ? "w-8 h-8 rounded bg-primary text-white font-label-code text-xs flex items-center justify-center shadow-xs"
-                : "w-8 h-8 rounded border border-on-surface/15 flex items-center justify-center text-on-surface hover:bg-white font-label-code text-xs"
-            }
+                ? "bg-primary text-on-primary shadow-xs"
+                : "bg-surface-container text-on-surface hover:bg-surface-container-high"
+            }`}
           >
             {n}
           </button>
@@ -157,11 +253,11 @@ function PaginationFooter({
       )}
       {totalPages > 3 ? (
         <>
-          <span className="px-1 text-on-surface-variant/60">...</span>
+          <span className="px-1 text-on-surface-variant">...</span>
           <button
             type="button"
             onClick={() => onPage(totalPages)}
-            className="w-8 h-8 rounded border border-on-surface/15 flex items-center justify-center text-on-surface hover:bg-white font-label-code text-xs"
+            className="w-8 h-8 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high text-xs font-bold flex items-center justify-center transition-colors cursor-pointer"
           >
             {totalPages}
           </button>
@@ -171,7 +267,7 @@ function PaginationFooter({
         type="button"
         disabled={page >= totalPages}
         onClick={() => onPage(page + 1)}
-        className="w-8 h-8 rounded border border-on-surface/15 flex items-center justify-center text-on-surface-variant hover:bg-white disabled:opacity-30 disabled:cursor-not-allowed"
+        className="w-8 h-8 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
         aria-label="Berikutnya"
       >
         <Icon name="chevron_right" className="text-base" />

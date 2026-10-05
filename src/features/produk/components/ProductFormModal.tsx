@@ -41,7 +41,7 @@ export function ProductFormModal({ open, onClose, onSave }: ProductFormModalProp
       <div className="flex flex-col gap-space-sm">
         <Field label="Nama Produk">
           <input
-            className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full"
+            className="bg-surface-container-low border border-surface-container rounded-xl px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-surface-container-lowest focus:outline-none w-full"
             placeholder="Contoh: Beras Rojolele 5kg"
             value={form.name}
             onChange={(e) => set("name", e.target.value)}
@@ -50,14 +50,14 @@ export function ProductFormModal({ open, onClose, onSave }: ProductFormModalProp
         <div className="grid grid-cols-2 gap-space-sm">
           <Field label="SKU / Barcode">
             <input
-              className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full"
+              className="bg-surface-container-low border border-surface-container rounded-xl px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-surface-container-lowest focus:outline-none w-full"
               value={form.sku}
               onChange={(e) => set("sku", e.target.value)}
             />
           </Field>
           <Field label="Satuan">
             <input
-              className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full"
+              className="bg-surface-container-low border border-surface-container rounded-xl px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-surface-container-lowest focus:outline-none w-full"
               value={form.unitLabel}
               onChange={(e) => set("unitLabel", e.target.value)}
             />
@@ -65,7 +65,7 @@ export function ProductFormModal({ open, onClose, onSave }: ProductFormModalProp
         </div>
         <Field label="Kategori">
           <select
-            className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full"
+            className="bg-surface-container-low border border-surface-container rounded-xl px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-surface-container-lowest focus:outline-none w-full"
             value={form.category}
             onChange={(e) => set("category", e.target.value)}
           >
@@ -81,7 +81,7 @@ export function ProductFormModal({ open, onClose, onSave }: ProductFormModalProp
             <input
               type="number"
               min={0}
-              className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full"
+              className="bg-surface-container-low border border-surface-container rounded-xl px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-surface-container-lowest focus:outline-none w-full"
               value={form.buyPrice}
               onChange={(e) => set("buyPrice", Number(e.target.value))}
             />
@@ -90,7 +90,7 @@ export function ProductFormModal({ open, onClose, onSave }: ProductFormModalProp
             <input
               type="number"
               min={0}
-              className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full"
+              className="bg-surface-container-low border border-surface-container rounded-xl px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-surface-container-lowest focus:outline-none w-full"
               value={form.sellPrice}
               onChange={(e) => set("sellPrice", Number(e.target.value))}
             />
@@ -101,7 +101,7 @@ export function ProductFormModal({ open, onClose, onSave }: ProductFormModalProp
             <input
               type="number"
               min={0}
-              className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full"
+              className="bg-surface-container-low border border-surface-container rounded-xl px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-surface-container-lowest focus:outline-none w-full"
               value={form.stock}
               onChange={(e) => set("stock", Number(e.target.value))}
             />
@@ -110,7 +110,7 @@ export function ProductFormModal({ open, onClose, onSave }: ProductFormModalProp
             <input
               type="number"
               min={0}
-              className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full"
+              className="bg-surface-container-low border border-surface-container rounded-xl px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-surface-container-lowest focus:outline-none w-full"
               value={form.minStock}
               onChange={(e) => set("minStock", Number(e.target.value))}
             />

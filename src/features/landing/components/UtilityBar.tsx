@@ -14,10 +14,10 @@ export function UtilityBar() {
         </div>
         <div className="flex items-center gap-space-md">
           <span className="font-label-code text-label-code text-primary-container bg-surface-container px-space-xs py-0.5 rounded">
-            F2: Bayar Cepat
+            Bayar Cepat
           </span>
           <span className="hidden md:inline font-label-code text-label-code text-on-surface-variant">
-            ESC: Batal
+            Siap Transaksi
           </span>
         </div>
       </div>

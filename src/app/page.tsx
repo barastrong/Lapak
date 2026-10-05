@@ -48,7 +48,7 @@ export default async function HomePage() {
             <FeatureModules modules={featureModules} />
           </div>
         </section>
-        <section className="w-full bg-surface-container-low py-space-xl px-space-md">
+        <section id="cara-kerja" className="w-full bg-surface-container-low py-space-xl px-space-md">
           <div className="max-w-[1240px] mx-auto flex flex-col gap-space-lg">
             <div className="text-center max-w-xl mx-auto">
               <span className="font-label-code text-label-code text-primary-container uppercase font-bold tracking-wider">
@@ -76,7 +76,9 @@ export default async function HomePage() {
               </p>
             </div>
             <PlanGrid plans={plans} />
-            <FaqPanel faqs={faqs} />
+            <div id="faq">
+              <FaqPanel faqs={faqs} />
+            </div>
           </div>
         </section>
         <WaSupportCallout />

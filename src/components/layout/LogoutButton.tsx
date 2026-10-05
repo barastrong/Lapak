@@ -9,8 +9,8 @@ export function LogoutButton() {
   return (
     <button
       type="button"
-      onClick={() => router.push("/")}
-      className="w-full flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-error hover:bg-error-container/60 transition-colors font-label-ui text-label-ui"
+      onClick={() => router.push("/login")}
+      className="w-full flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-error hover:bg-error-container/60 transition-colors font-label-ui text-label-ui cursor-pointer"
     >
       <Icon name="logout" className="text-xl" />
       <span>Keluar / Logout</span>

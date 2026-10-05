@@ -50,7 +50,7 @@ export function PlanCard({ plan }: { plan: PricePlan }) {
           href={plan.ctaHref}
           {...(plan.ctaOuter ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           className={cn(
-            "w-full inline-flex items-center justify-center font-label-ui text-label-ui font-bold py-3 rounded-xl hover:bg-surface-container-high transition-colors active:translate-y-[1px]",
+            "w-full inline-flex items-center justify-center font-label-ui text-label-ui font-bold py-3 rounded-xl transition-all active:translate-y-[1px] cursor-pointer",
             plan.ctaClassName
           )}
         >

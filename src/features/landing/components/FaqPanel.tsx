@@ -23,7 +23,7 @@ export function FaqPanel({ faqs }: { faqs: Faq[] }) {
 /** Callout dukungan WhatsApp di bawah pricing. */
 export function WaSupportCallout() {
   return (
-    <section className="w-full bg-surface-container-highest py-space-xl px-space-md">
+    <section id="bantuan" className="w-full bg-surface-container-highest py-space-xl px-space-md">
       <div className="max-w-[1240px] mx-auto bg-surface-container-lowest rounded-2xl p-space-lg shadow-lg flex flex-col md:flex-row items-center justify-between gap-space-lg">
         <div className="flex flex-col gap-space-xs max-w-xl">
           <div className="flex items-center gap-space-xs">

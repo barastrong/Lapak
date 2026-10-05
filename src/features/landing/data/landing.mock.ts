@@ -141,13 +141,75 @@ export const pricePlansMock: PricePlan[] = [
 
 export const faqsMock: Faq[] = [
   {
-    question: "Apakah bisa mencetak struk pakai printer kasir Bluetooth thermal?",
+    category: "Umum & Penggunaan",
+    question: "Apakah sistem kasir Lapak bisa digunakan saat internet mati atau lemot?",
     answer:
-      "Bisa. Lapak mendukung semua printer thermal 58mm dan 80mm standar USB maupun Bluetooth (seperti Panda, VSC, Iware, Epson POS).",
+      "Bisa. Lapak dirancang dengan mode offline pintar. Transaksi penjualan kasir tetap bisa diproses dan nota struk tetap tercetak lancar. Semua transaksi yang tercatat offline akan otomatis tersinkronisasi ke server cloud begitu internet tersambung kembali.",
   },
   {
-    question: "Bagaimana jika jaringan internet di pasar sedang lemot?",
+    category: "Umum & Penggunaan",
+    question: "Bagaimana cara memindahkan daftar produk dari buku tulis ke sistem Lapak?",
     answer:
-      "Lapak dilengkapi mode offline kasir. Transaksi tetap bisa diinput, nota tetap tercetak, dan data akan otomatis sinkron begitu internet tersambung kembali.",
+      "Sangat mudah dan cepat. Anda bisa mengimpor data produk lewat file Excel/CSV, atau menggunakan fitur scan barcode kemasan untuk input instan. Tim dukungan WhatsApp kami juga siap membantu proses input awal produk warung Anda tanpa biaya tambahan.",
+  },
+  {
+    category: "Umum & Penggunaan",
+    question: "Apakah struk belanja pelanggan bisa dikirimkan langsung via WhatsApp?",
+    answer:
+      "Bisa! Selain dicetak di kertas thermal, kasir bisa langsung mengirimkan nota digital resmi dengan rincian rapi ke nomor WhatsApp pelanggan hanya dengan satu ketukan tombol.",
+  },
+  {
+    category: "Perangkat & Cetak",
+    question: "Printer thermal apa saja yang kompatibel dengan aplikasi kasir Lapak?",
+    answer:
+      "Lapak mendukung semua jenis printer thermal standar ukuran 58mm dan 80mm, baik koneksi Bluetooth maupun kabel USB (seperti merek Panda, VSC, Iware, Zywell, Epson POS, Sunmi, dan printer kasir portabel lainnya) langsung dari browser.",
+  },
+  {
+    category: "Perangkat & Cetak",
+    question: "Apakah kasir Lapak bisa dipakai di HP Android, tablet, dan laptop sekaligus?",
+    answer:
+      "Bisa. Lapak adalah aplikasi web modern berbasis cloud yang sangat ringan dan responsif. Anda dapat mengaksesnya dari browser HP Android, iPhone, tablet Android/iPad, maupun laptop/PC kasir tanpa perlu instalasi aplikasi berat.",
+  },
+  {
+    category: "Perangkat & Cetak",
+    question: "Apakah bisa disambungkan ke barcode scanner dan laci kasir otomatis (cash drawer)?",
+    answer:
+      "Bisa. Lapak mendukung scanner barcode USB atau Bluetooth secara plug-and-play untuk pencarian kilat barang belanjaan, serta modul trigger laci kasir (RJ11) otomatis terbuka setelah pembayaran selesai.",
+  },
+  {
+    category: "Data & Keamanan",
+    question: "Bagaimana keamanan data jika HP atau laptop di meja kasir rusak atau hilang?",
+    answer:
+      "Data Anda 100% aman tersimpan di cloud dengan enkripsi berstandar industri. Jika perangkat Anda rusak atau ganti baru, cukup login kembali ke akun Anda dan seluruh catatan stok, barang, serta buku bon utang pelanggan langsung pulih utuh.",
+  },
+  {
+    category: "Data & Keamanan",
+    question: "Jika toko dijaga karyawan bergantian shift, bagaimana cara memantau kas uang?",
+    answer:
+      "Lapak dilengkapi sistem rekonsiliasi kas per shift. Karyawan mencatat modal awal kas (opening cash) dan sistem otomatis menghitung kecocokan uang fisik dengan total transaksi saat penutupan shift (closing cash) untuk mencegah kecurangan atau salah hitung.",
+  },
+  {
+    category: "Paket & Biaya",
+    question: "Apakah ada biaya transaksi tersembunyi atau potongan per penjualan?",
+    answer:
+      "Tidak ada sama sekali. Anda hanya membayar biaya langganan bulanan flat sesuai paket yang dipilih. Tidak ada potongan persentase per transaksi atau biaya administrasi tambahan.",
+  },
+  {
+    category: "Paket & Biaya",
+    question: "Apakah saya bisa mencoba semua fiturnya secara gratis terlebih dahulu?",
+    answer:
+      "Tentu saja! Kami memberikan masa uji coba gratis (free trial) selama 14 hari dengan akses semua fitur lengkap. Anda bisa langsung mencoba tanpa perlu kartu kredit dan tanpa komitmen mengikat.",
+  },
+  {
+    category: "Paket & Biaya",
+    question: "Bisakah saya mengubah atau membatalkan langganan kapan saja?",
+    answer:
+      "Bisa sewaktu-waktu. Anda bebas melakukan upgrade, downgrade, atau berhenti berlangganan kapan saja dari menu Pengaturan tanpa denda atau prosedur berbelit.",
+  },
+  {
+    category: "Paket & Biaya",
+    question: "Bagaimana jika saya memerlukan panduan teknis saat toko sedang ramai?",
+    answer:
+      "Tim customer service kami siaga setiap hari melalui WhatsApp di 0812-8900-52725 (08:00 - 20:00 WIB) untuk membantu panduan remote setting printer, pertanyaan fitur, maupun bantuan darurat kasir.",
   },
 ];

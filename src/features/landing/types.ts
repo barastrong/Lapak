@@ -61,4 +61,5 @@ export type PricePlan = {
 export type Faq = {
   question: string;
   answer: string;
+  category?: string;
 };

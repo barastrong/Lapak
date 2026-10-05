@@ -30,7 +30,7 @@ export function FaqPanel({ faqs }: { faqs: Faq[] }) {
   };
 
   return (
-    <div className="bg-surface-container-low/70 border border-surface-container-high p-space-md sm:p-space-xl rounded-3xl max-w-4xl mx-auto w-full flex flex-col gap-space-lg">
+    <div className="bg-surface-container-low/70 border border-surface-container-high p-space-md sm:p-space-xl rounded-3xl max-w-[1240px] mx-auto w-full flex flex-col gap-space-lg">
       <div className="text-center max-w-xl mx-auto flex flex-col gap-1">
         <span className="font-label-code text-label-code text-primary-container font-bold uppercase tracking-wider">
           Tanya Jawab & Bantuan
@@ -60,7 +60,7 @@ export function FaqPanel({ faqs }: { faqs: Faq[] }) {
         ))}
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4 items-start">
         {filteredFaqs.map((f, idx) => {
           const isOpen = openIndices.includes(idx);
           return (
@@ -75,20 +75,20 @@ export function FaqPanel({ faqs }: { faqs: Faq[] }) {
               <button
                 type="button"
                 onClick={() => toggleFaq(idx)}
-                className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 cursor-pointer"
+                className="w-full p-4 sm:p-5 text-left flex items-start justify-between gap-3 cursor-pointer"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col gap-1">
                   {f.category ? (
-                    <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant whitespace-nowrap">
+                    <span className="inline-block w-fit px-2 py-0.5 rounded-full text-[11px] font-semibold bg-surface-container text-on-surface-variant">
                       {f.category}
                     </span>
                   ) : null}
-                  <span className="font-headline-sm text-body-md sm:text-headline-sm font-bold text-on-surface">
+                  <span className="font-headline-sm text-body-md sm:text-headline-sm font-bold text-on-surface mt-0.5">
                     {f.question}
                   </span>
                 </div>
                 <span
-                  className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${
+                  className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5 transition-transform duration-200 ${
                     isOpen
                       ? "rotate-180 bg-primary/10 text-primary"
                       : "bg-surface-container text-on-surface-variant"
@@ -113,31 +113,6 @@ export function FaqPanel({ faqs }: { faqs: Faq[] }) {
             </div>
           );
         })}
-      </div>
-
-      <div className="bg-surface-container-lowest border border-surface-container rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left mt-2">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-tertiary-container/20 text-tertiary flex items-center justify-center shrink-0">
-            <Icon name="support_agent" className="text-2xl text-tertiary" />
-          </div>
-          <div>
-            <p className="font-bold text-on-surface text-body-sm sm:text-body-md">
-              Pertanyaan Anda belum terjawab?
-            </p>
-            <p className="text-body-xs sm:text-body-sm text-on-surface-variant">
-              Tim customer service kami siap bantu lewat pesan WhatsApp.
-            </p>
-          </div>
-        </div>
-        <a
-          href="https://wa.me/62812890052725"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-tertiary text-on-tertiary px-5 py-2.5 rounded-xl font-label-ui text-body-sm font-bold hover:bg-tertiary-container transition-all shrink-0"
-        >
-          <Icon name="chat" className="text-lg" />
-          <span>Tanya via WhatsApp</span>
-        </a>
       </div>
     </div>
   );

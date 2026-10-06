@@ -1,6 +1,7 @@
 export { LaporanScreen } from "@/features/laporan/components/LaporanScreen";
 export { LaporanHeader } from "@/features/laporan/components/LaporanHeader";
 export { SummaryPanels } from "@/features/laporan/components/SummaryPanels";
+export { FinancialBreakdownPanels } from "@/features/laporan/components/FinancialBreakdownPanels";
 export { ProfitChart } from "@/features/laporan/components/ProfitChart";
 export { TransactionTable } from "@/features/laporan/components/TransactionTable";
 export { CloseValidationBanner } from "@/features/laporan/components/CloseValidationBanner";
@@ -15,4 +16,7 @@ export type {
   TransactionMethod,
   ChartCallout,
   CloseValidation,
+  PaymentMethodBreakdown,
+  CategoryProfitability,
+  ReconciliationRecord,
 } from "@/features/laporan/types";

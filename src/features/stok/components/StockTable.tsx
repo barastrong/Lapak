@@ -24,10 +24,11 @@ type StockTableProps = {
   query: string;
   onQuery: (s: string) => void;
   onOpenAdjustment: (item: StockItem) => void;
+  onKulak?: (item: StockItem) => void;
 };
 
 /** Tabel data stok & pergerakan rak, dengan pencarian live. */
-export function StockTable({ items, query, onQuery, onOpenAdjustment }: StockTableProps) {
+export function StockTable({ items, query, onQuery, onOpenAdjustment, onKulak }: StockTableProps) {
   return (
     <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
@@ -106,7 +107,8 @@ export function StockTable({ items, query, onQuery, onOpenAdjustment }: StockTab
                   {row.status === "Habis" || row.status === "Menipis" ? (
                     <button
                       type="button"
-                      className="inline-flex items-center gap-1 text-primary hover:text-primary-container px-2 py-1.5 rounded-lg hover:bg-surface-container transition-colors text-xs font-label-code"
+                      onClick={() => onKulak?.(row)}
+                      className="inline-flex items-center gap-1 text-primary hover:text-primary-container px-2 py-1.5 rounded-lg hover:bg-surface-container transition-colors text-xs font-label-code cursor-pointer"
                       title="Tambah ke Catatan Pasar"
                     >
                       <Icon name="playlist_add" className="text-lg" />

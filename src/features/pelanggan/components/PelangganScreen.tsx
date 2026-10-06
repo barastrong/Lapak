@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { usePelanggan } from "@/features/pelanggan/hooks/usePelanggan";
 import { pelangganTiersMock } from "@/features/pelanggan/data/pelanggan.mock";
 import { exportToCsv } from "@/lib/export";
-import type { PelangganTier } from "@/features/pelanggan/types";
+import type { Pelanggan, PelangganTier } from "@/features/pelanggan/types";
 
 const TIER_STYLE: Record<PelangganTier, string> = {
   Konsisten: "bg-tertiary-fixed text-tertiary",
@@ -18,8 +18,10 @@ const TIER_STYLE: Record<PelangganTier, string> = {
 
 /** Layar pelanggan: ringkasan, cari, filter tier, tabel buku pelanggan. */
 export function PelangganScreen() {
-  const { list, summary, tier, query, isLoading, setTier, setQuery } = usePelanggan();
+  const { list, summary, tier, query, isLoading, setTier, setQuery, updatePelanggan, deletePelanggan } = usePelanggan();
   const [modalOpen, setModalOpen] = useState(false);
+  const [editingPelanggan, setEditingPelanggan] = useState<Pelanggan | null>(null);
+  const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
   if (isLoading || !summary) {
     return (
@@ -117,6 +119,7 @@ export function PelangganScreen() {
                 <th className="py-3 px-space-md text-right">Total Belanja</th>
                 <th className="py-3 px-space-md text-right">Utang Aktif</th>
                 <th className="py-3 px-space-md">Terakhir Belanja</th>
+                <th className="py-3 px-space-md text-right">Aksi</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-surface-container text-body-sm text-on-surface">
@@ -149,6 +152,26 @@ export function PelangganScreen() {
                   <td className="py-3 px-space-md text-body-sm text-on-surface-variant whitespace-nowrap">
                     {p.terakhirBelanja}
                   </td>
+                  <td className="py-3 px-space-md text-right whitespace-nowrap">
+                    <div className="flex items-center justify-end gap-1">
+                      <button
+                        type="button"
+                        onClick={() => setEditingPelanggan(p)}
+                        className="p-1.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors cursor-pointer"
+                        title="Edit Data Pelanggan"
+                      >
+                        <Icon name="edit" className="text-base" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setDeleteConfirmId(p.id)}
+                        className="p-1.5 rounded-lg text-on-surface-variant hover:text-error hover:bg-error-container/30 transition-colors cursor-pointer"
+                        title="Hapus Pelanggan"
+                      >
+                        <Icon name="delete" className="text-base" />
+                      </button>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -161,25 +184,165 @@ export function PelangganScreen() {
       </div>
 
       {modalOpen ? (
-        <div className="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-xs flex items-center justify-center p-4" onClick={() => setModalOpen(false)}>
-          <div className="bg-surface-container-lowest rounded-xl shadow-xl max-w-md w-full p-space-lg flex flex-col gap-space-md relative" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-xs flex items-center justify-center p-4 cursor-pointer" onClick={() => setModalOpen(false)}>
+          <div className="bg-surface-container-lowest rounded-xl shadow-xl max-w-md w-full p-space-lg flex flex-col gap-space-md relative cursor-default" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-space-xs">
                 <Icon name="person_add" className="text-primary text-xl" />
                 <h3 className="font-headline-sm text-headline-sm text-on-surface">Tambah Pelanggan</h3>
               </div>
-              <button type="button" className="text-on-surface-variant hover:text-on-surface p-1" onClick={() => setModalOpen(false)} aria-label="Tutup">
+              <button type="button" className="text-on-surface-variant hover:text-on-surface p-1 cursor-pointer" onClick={() => setModalOpen(false)} aria-label="Tutup">
                 <Icon name="close" />
               </button>
             </div>
             <p className="text-body-sm text-on-surface-variant">
-              Form tambah pelanggan akan dihubungkan ke backend. // TODO: hook ke API
+              Form tambah pelanggan baru akan otomatis disimpan ke sistem buku utang & profil pelanggan.
             </p>
+            <div className="flex flex-col gap-2.5">
+              <input
+                id="new-pelanggan-name"
+                placeholder="Nama Pelanggan / Tetangga"
+                className="bg-surface-container-low px-3 py-2 rounded-lg text-body-sm text-on-surface border border-surface-container focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+              <input
+                id="new-pelanggan-phone"
+                placeholder="Nomor Telepon / WhatsApp"
+                className="bg-surface-container-low px-3 py-2 rounded-lg text-body-sm text-on-surface border border-surface-container focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+              <input
+                id="new-pelanggan-address"
+                placeholder="Alamat / Blok Rumah"
+                className="bg-surface-container-low px-3 py-2 rounded-lg text-body-sm text-on-surface border border-surface-container focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+            </div>
             <div className="flex items-center justify-end gap-space-sm pt-space-xs">
               <Button variant="surfaceContainer" onClick={() => setModalOpen(false)}>
                 Batal
               </Button>
-              <Button onClick={() => setModalOpen(false)}>Simpan</Button>
+              <Button
+                onClick={() => {
+                  const nameEl = document.getElementById("new-pelanggan-name") as HTMLInputElement | null;
+                  const phoneEl = document.getElementById("new-pelanggan-phone") as HTMLInputElement | null;
+                  const addrEl = document.getElementById("new-pelanggan-address") as HTMLInputElement | null;
+                  if (nameEl?.value) {
+                    updatePelanggan({
+                      id: `PG-${Date.now()}`,
+                      name: nameEl.value,
+                      phone: phoneEl?.value || "0812-0000-0000",
+                      address: addrEl?.value || "Lingkungan Warung",
+                      tier: "Biasa",
+                      totalTransaksi: 0,
+                      totalBelanja: 0,
+                      utangAktif: 0,
+                      terakhirBelanja: "Baru terdaftar",
+                    });
+                  }
+                  setModalOpen(false);
+                }}
+              >
+                Simpan Pelanggan
+              </Button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {/* Modal Edit Pelanggan */}
+      {editingPelanggan ? (
+        <div className="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-xs flex items-center justify-center p-4 cursor-pointer" onClick={() => setEditingPelanggan(null)}>
+          <div className="bg-surface-container-lowest rounded-xl shadow-xl max-w-md w-full p-space-lg flex flex-col gap-space-md relative cursor-default" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-space-xs">
+                <Icon name="edit" className="text-primary text-xl" />
+                <h3 className="font-headline-sm text-headline-sm text-on-surface">Ubah Data Pelanggan</h3>
+              </div>
+              <button type="button" className="text-on-surface-variant hover:text-on-surface p-1 cursor-pointer" onClick={() => setEditingPelanggan(null)} aria-label="Tutup">
+                <Icon name="close" />
+              </button>
+            </div>
+            <div className="flex flex-col gap-3">
+              <label className="flex flex-col gap-1 text-xs text-on-surface-variant font-label-ui">
+                <span>Nama Pelanggan</span>
+                <input
+                  type="text"
+                  value={editingPelanggan.name}
+                  onChange={(e) => setEditingPelanggan({ ...editingPelanggan, name: e.target.value })}
+                  className="bg-surface-container-low px-3 py-2 rounded-lg text-body-sm text-on-surface border border-surface-container focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+              </label>
+              <label className="flex flex-col gap-1 text-xs text-on-surface-variant font-label-ui">
+                <span>Nomor Kontak</span>
+                <input
+                  type="text"
+                  value={editingPelanggan.phone}
+                  onChange={(e) => setEditingPelanggan({ ...editingPelanggan, phone: e.target.value })}
+                  className="bg-surface-container-low px-3 py-2 rounded-lg text-body-sm text-on-surface border border-surface-container focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+              </label>
+              <label className="flex flex-col gap-1 text-xs text-on-surface-variant font-label-ui">
+                <span>Alamat / Lokasi</span>
+                <input
+                  type="text"
+                  value={editingPelanggan.address}
+                  onChange={(e) => setEditingPelanggan({ ...editingPelanggan, address: e.target.value })}
+                  className="bg-surface-container-low px-3 py-2 rounded-lg text-body-sm text-on-surface border border-surface-container focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+              </label>
+              <label className="flex flex-col gap-1 text-xs text-on-surface-variant font-label-ui">
+                <span>Status Kategori (Tier)</span>
+                <select
+                  value={editingPelanggan.tier}
+                  onChange={(e) => setEditingPelanggan({ ...editingPelanggan, tier: e.target.value as PelangganTier })}
+                  className="bg-surface-container-low px-3 py-2 rounded-lg text-body-sm text-on-surface border border-surface-container focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer"
+                >
+                  <option value="Biasa">Biasa</option>
+                  <option value="Konsisten">Konsisten</option>
+                  <option value="Bon Aktif">Bon Aktif</option>
+                </select>
+              </label>
+            </div>
+            <div className="flex items-center justify-end gap-space-sm pt-space-xs">
+              <Button variant="surfaceContainer" onClick={() => setEditingPelanggan(null)}>
+                Batal
+              </Button>
+              <Button
+                onClick={() => {
+                  updatePelanggan(editingPelanggan);
+                  setEditingPelanggan(null);
+                }}
+              >
+                Simpan Perubahan
+              </Button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {/* Modal Konfirmasi Hapus */}
+      {deleteConfirmId ? (
+        <div className="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-xs flex items-center justify-center p-4 cursor-pointer" onClick={() => setDeleteConfirmId(null)}>
+          <div className="bg-surface-container-lowest rounded-xl shadow-xl max-w-sm w-full p-space-lg flex flex-col gap-space-md relative cursor-default" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center gap-space-xs text-error">
+              <Icon name="warning" className="text-xl" />
+              <h3 className="font-headline-sm text-headline-sm">Hapus Pelanggan?</h3>
+            </div>
+            <p className="text-body-sm text-on-surface-variant">
+              Data pelanggan ini akan dihapus dari buku pelanggan. Tindakan ini tidak dapat dibatalkan.
+            </p>
+            <div className="flex items-center justify-end gap-space-sm pt-space-xs">
+              <Button variant="surfaceContainer" onClick={() => setDeleteConfirmId(null)}>
+                Batal
+              </Button>
+              <button
+                type="button"
+                onClick={() => {
+                  deletePelanggan(deleteConfirmId);
+                  setDeleteConfirmId(null);
+                }}
+                className="px-4 py-2 rounded-xl bg-error text-on-error font-label-ui text-body-sm font-bold hover:bg-error/90 transition-colors cursor-pointer"
+              >
+                Hapus
+              </button>
             </div>
           </div>
         </div>

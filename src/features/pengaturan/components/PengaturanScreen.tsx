@@ -80,19 +80,79 @@ export function PengaturanScreen() {
           <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
             <div className="flex items-center gap-space-xs">
               <Icon name="print" className="text-primary text-xl" />
-              <h2 className="font-headline-md text-headline-md text-on-surface">Preferensi Cetak</h2>
+              <h2 className="font-headline-md text-headline-md text-on-surface">Preferensi Printer & Kertas</h2>
             </div>
-            <label className="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container-low cursor-pointer">
-              <input type="checkbox" defaultChecked className="w-4 h-4 rounded accent-primary" />
-              <div className="flex flex-col">
-                <span className="font-label-ui text-label-ui text-on-surface">
-                  Printer thermal 58mm
-                </span>
-                <span className="text-body-sm text-on-surface-variant">
-                  Standar untuk nota kasir warung
-                </span>
-              </div>
-            </label>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+              <label className="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container-low cursor-pointer border border-surface-container">
+                <input type="radio" name="printerPaper" defaultChecked className="w-4 h-4 rounded-full accent-primary" />
+                <div className="flex flex-col">
+                  <span className="font-label-ui text-label-ui text-on-surface">Thermal 58mm</span>
+                  <span className="text-body-sm text-on-surface-variant text-xs">Standar nota mini saku</span>
+                </div>
+              </label>
+              <label className="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container-low cursor-pointer border border-surface-container">
+                <input type="radio" name="printerPaper" className="w-4 h-4 rounded-full accent-primary" />
+                <div className="flex flex-col">
+                  <span className="font-label-ui text-label-ui text-on-surface">Thermal 80mm</span>
+                  <span className="text-body-sm text-on-surface-variant text-xs">Lebar untuk rincian panjang</span>
+                </div>
+              </label>
+            </div>
+            <div className="flex flex-col gap-2 pt-1 border-t border-surface-container">
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <span>Cetak otomatis setelah pembayaran selesai</span>
+                <input type="checkbox" defaultChecked className="w-4 h-4 rounded accent-primary" />
+              </label>
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <span>Tampilkan logo toko pada struk</span>
+                <input type="checkbox" defaultChecked className="w-4 h-4 rounded accent-primary" />
+              </label>
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <span>Tampilkan catatan kaki (Terima kasih)</span>
+                <input type="checkbox" defaultChecked className="w-4 h-4 rounded accent-primary" />
+              </label>
+            </div>
+          </div>
+
+          <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
+            <div className="flex items-center gap-space-xs">
+              <Icon name="badge" className="text-primary text-xl" />
+              <h2 className="font-headline-md text-headline-md text-on-surface">Kasir & Hak Akses</h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+              <Field label="Kasir Utama / Login" value="Sari (Kasir 01)" />
+              <Field label="PIN Kasir (4 Digit)" value="••••" />
+              <Field label="Shift Kerja Aktif" value="Pagi (06:00 - 14:00)" />
+              <Field label="Kas Modal Awal Default" value="Rp 200.000" />
+            </div>
+          </div>
+
+          <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
+            <div className="flex items-center gap-space-xs">
+              <Icon name="cloud_sync" className="text-primary text-xl" />
+              <h2 className="font-headline-md text-headline-md text-on-surface">Data & Cadangan (Backup)</h2>
+            </div>
+            <p className="text-body-sm text-xs text-on-surface-variant">
+              Cadangkan database barang, pelanggan, dan riwayat transaksi warung secara berkala.
+            </p>
+            <div className="flex flex-wrap gap-2 pt-1">
+              <button
+                type="button"
+                onClick={() => alert("Cadangan data offline berhasil diunduh!")}
+                className="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container hover:bg-surface-container-high rounded-xl text-xs font-label-ui font-semibold text-on-surface cursor-pointer"
+              >
+                <Icon name="download" className="text-sm" />
+                Cadangkan Data Lokal (JSON)
+              </button>
+              <button
+                type="button"
+                onClick={() => alert("Sinkronisasi cloud berhasil diselesaikan!")}
+                className="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container hover:bg-surface-container-high rounded-xl text-xs font-label-ui font-semibold text-on-surface cursor-pointer"
+              >
+                <Icon name="sync" className="text-sm" />
+                Sinkronkan ke Cloud
+              </button>
+            </div>
           </div>
         </div>
 

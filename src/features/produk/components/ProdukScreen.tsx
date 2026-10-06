@@ -6,6 +6,7 @@ import { Icon } from "@/components/ui/Icon";
 import { ProductFilterBar } from "@/features/produk/components/ProductFilterBar";
 import { ProductTable } from "@/features/produk/components/ProductTable";
 import { ProductFormModal } from "@/features/produk/components/ProductFormModal";
+import { StockHistoryModal } from "@/features/produk/components/StockHistoryModal";
 import { BulkActionBar } from "@/features/produk/components/BulkActionBar";
 import { useProducts } from "@/features/produk/hooks/useProducts";
 import { productCategoriesMock } from "@/features/produk/data/products.mock";
@@ -16,6 +17,8 @@ import type { Product } from "@/types/product";
 export function ProdukScreen() {
   const state = useProducts();
   const [modalOpen, setModalOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [historyProduct, setHistoryProduct] = useState<Product | null>(null);
 
   const handleExport = () => {
     exportToCsv(
@@ -71,19 +74,24 @@ export function ProdukScreen() {
             Kelola harga beli modal, harga ecer, keuntungan margin, dan ketersediaan stok produk.
           </p>
         </div>
-        <div className="flex items-center gap-space-sm shrink-0">
+        <div className="flex items-center gap-space-sm shrink-0 print:hidden">
           <Button variant="surfaceContainer" onClick={handleExport}>
             <Icon name="download" className="text-lg" />
             Ekspor CSV
           </Button>
-          <Button onClick={() => setModalOpen(true)}>
+          <Button
+            onClick={() => {
+              setEditingProduct(null);
+              setModalOpen(true);
+            }}
+          >
             <Icon name="add" className="text-lg" />
-            + Tambah Produk Baru
+            Tambah Produk Baru
           </Button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md print:hidden">
         <div className="bg-surface-container-lowest p-space-md rounded-2xl shadow-sm border border-surface-container flex items-center justify-between">
           <div className="flex flex-col">
             <span className="text-xs font-label-code text-on-surface-variant uppercase tracking-wider">
@@ -153,29 +161,36 @@ export function ProdukScreen() {
         </div>
       </div>
 
-      <ProductFilterBar
-        search={state.search}
-        onSearch={state.setSearch}
-        category={state.category}
-        onCategory={state.setCategory}
-        marginTier={state.marginTier}
-        onMarginTier={state.setMarginTier}
-        onReset={() => {
-          state.setSearch("");
-          state.setCategory("Semua Kategori (6)");
-          state.setMarginTier("all");
-        }}
-        categories={productCategoriesMock}
-      />
+      <div className="print:hidden">
+        <ProductFilterBar
+          search={state.search}
+          onSearch={state.setSearch}
+          category={state.category}
+          onCategory={state.setCategory}
+          marginTier={state.marginTier}
+          onMarginTier={state.setMarginTier}
+          onReset={() => {
+            state.setSearch("");
+            state.setCategory("Semua Kategori (6)");
+            state.setMarginTier("all");
+          }}
+          categories={productCategoriesMock}
+        />
+      </div>
 
       <ProductTable
         products={state.products}
         selected={state.selected}
         onToggle={state.toggleSelected}
         onToggleAll={state.toggleAll}
+        onEdit={(p) => {
+          setEditingProduct(p);
+          setModalOpen(true);
+        }}
+        onHistory={(p) => setHistoryProduct(p)}
       />
 
-      <div className="p-4 bg-surface-container-lowest rounded-2xl shadow-sm border border-surface-container flex flex-col md:flex-row items-center justify-between gap-4 text-body-sm">
+      <div className="p-4 bg-surface-container-lowest rounded-2xl shadow-sm border border-surface-container flex flex-col md:flex-row items-center justify-between gap-4 text-body-sm print:hidden">
         <div className="flex items-center gap-4 text-on-surface-variant">
           <span>
             Menampilkan{" "}
@@ -208,8 +223,24 @@ export function ProdukScreen() {
 
       <ProductFormModal
         open={modalOpen}
-        onClose={() => setModalOpen(false)}
-        onSave={({ ...input }: Omit<Product, "id">) => void input}
+        initialProduct={editingProduct}
+        onClose={() => {
+          setModalOpen(false);
+          setEditingProduct(null);
+        }}
+        onSave={(input, id) => {
+          if (id) {
+            state.upsertProduct({ id, ...input });
+          } else {
+            state.upsertProduct({ id: `P-${Date.now()}`, ...input });
+          }
+        }}
+      />
+
+      <StockHistoryModal
+        open={!!historyProduct}
+        onClose={() => setHistoryProduct(null)}
+        product={historyProduct}
       />
     </div>
   );

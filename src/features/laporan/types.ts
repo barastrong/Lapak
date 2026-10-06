@@ -10,11 +10,17 @@ export type ReportSummary = {
   marginPercent: number;
   dailyTarget: number;
   targetAchieved: number;
+  cashInDrawer?: number;
+  digitalBalance?: number;
+  pendingKasbon?: number;
+  operationalCost?: number;
 };
 
 export type DailyProfitPoint = {
   label: string;
   profit: number;
+  omset?: number;
+  transaksi?: number;
 };
 
 export type TransactionMethod = "QRIS" | "Tunai" | "Bon" | "Transfer BCA";
@@ -29,6 +35,7 @@ export type TransactionRow = {
   itemsDetail: string;
   method: TransactionMethod;
   amount: number;
+  customer?: string;
   /** Baris bon berwarna merah redup (bg-error-container/20). */
   bon?: boolean;
 };
@@ -44,4 +51,35 @@ export type CloseValidation = {
   name: string;
   datetime: string;
   diff: number;
+};
+
+export type PaymentMethodBreakdown = {
+  method: TransactionMethod;
+  label: string;
+  amount: number;
+  count: number;
+  percentage: number;
+  badgeClass: string;
+};
+
+export type CategoryProfitability = {
+  category: string;
+  omset: number;
+  profit: number;
+  margin: number;
+  volumeLabel: string;
+};
+
+export type ReconciliationRecord = {
+  id: string;
+  shift: string;
+  cashier: string;
+  date: string;
+  openingCash: number;
+  cashSales: number;
+  expectedDrawer: number;
+  actualDrawer: number;
+  diff: number;
+  status: "SESUAI" | "SELISIH";
+  note?: string;
 };

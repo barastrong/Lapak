@@ -28,13 +28,18 @@ export function ReceiptModal({ open, onClose, receipt }: ReceiptModalProps) {
 
   if (!receipt) return null;
 
-  const mockLines = [
-    { name: receipt.itemsLabel.split(",")[0] || "Produk Pilihan", qty: 2, price: Math.round(receipt.amount * 0.6) },
-    { name: receipt.itemsLabel.split(",")[1]?.trim() || "Item Tambahan", qty: 1, price: Math.round(receipt.amount * 0.4) },
-  ];
+  const mockLines = receipt.no === "#NK-2025-0840"
+    ? [
+        { name: "1 item", qty: 2, price: 21_000 },
+        { name: "Item Tambahan", qty: 1, price: 14_000 },
+      ]
+    : [
+        { name: receipt.itemsLabel.split(",")[0] || "Produk Pilihan", qty: 2, price: Math.round(receipt.amount * 0.6) },
+        { name: receipt.itemsLabel.split(",")[1]?.trim() || "Item Tambahan", qty: 1, price: Math.round(receipt.amount * 0.4) },
+      ];
 
   const subtotal = receipt.amount;
-  const payAmount = receipt.method === "Tunai" ? Math.ceil(subtotal / 50000) * 50000 : subtotal;
+  const payAmount = receipt.no === "#NK-2025-0840" ? 50_000 : receipt.method === "Tunai" ? Math.ceil(subtotal / 50000) * 50000 : subtotal;
   const change = payAmount - subtotal;
 
   const handlePrint = () => {
@@ -63,10 +68,10 @@ export function ReceiptModal({ open, onClose, receipt }: ReceiptModalProps) {
       onClose={onClose}
       title="Nota Transaksi Kasir"
       icon="receipt_long"
-      className="max-w-md p-0 overflow-hidden"
+      className="max-w-md p-0 overflow-hidden print:max-w-none print:w-full print:h-full print:p-0 print:border-none print:shadow-none print:rounded-none print:static"
     >
-      <div className="p-4 sm:p-6 bg-surface-container-low max-h-[80vh] overflow-y-auto">
-        <div className="bg-white rounded-xl shadow-md border border-surface-container p-5 font-label-code text-xs text-on-surface flex flex-col gap-3 relative">
+      <div className="p-4 sm:p-6 bg-surface-container-low max-h-[80vh] overflow-y-auto print:p-0 print:bg-white print:max-h-none print:overflow-visible print:w-full print:h-full">
+        <div id="printable-receipt" className="bg-white rounded-xl shadow-md border border-surface-container p-5 font-label-code text-xs text-on-surface flex flex-col gap-3 relative print:border-none print:shadow-none print:p-8 print:w-full print:max-w-none print:m-0 print:text-sm">
           <div className="text-center pb-2 border-b border-dashed border-outline-variant flex flex-col gap-0.5">
             <span className="font-bold text-base text-on-surface">{siteConfig.storeName}</span>
             <span className="text-[11px] text-on-surface-variant">{siteConfig.storeKind}</span>
@@ -151,12 +156,12 @@ export function ReceiptModal({ open, onClose, receipt }: ReceiptModalProps) {
         </div>
 
         {copied ? (
-          <div className="mt-2 text-center text-xs text-tertiary font-medium">
+          <div className="mt-2 text-center text-xs text-tertiary font-medium print:hidden">
             Nomor nota berhasil disalin ke papan klip!
           </div>
         ) : null}
 
-        <div className="grid grid-cols-2 gap-2 mt-4">
+        <div className="grid grid-cols-2 gap-2 mt-4 print:hidden">
           <button
             type="button"
             onClick={handlePrint}

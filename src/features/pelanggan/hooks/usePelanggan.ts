@@ -13,6 +13,8 @@ export type PelangganState = {
   error: string | null;
   setTier: (t: PelangganTier | "Semua") => void;
   setQuery: (q: string) => void;
+  updatePelanggan: (p: Pelanggan) => void;
+  deletePelanggan: (id: string) => void;
   refetch: () => void;
 };
 
@@ -49,10 +51,18 @@ export function usePelanggan(): PelangganState {
     );
   }, [list, tier, query]);
 
+  const updatePelanggan = (updated: Pelanggan) => {
+    setList((prev) => prev.map((p) => (p.id === updated.id ? updated : p)));
+  };
+
+  const deletePelanggan = (id: string) => {
+    setList((prev) => prev.filter((p) => p.id !== id));
+  };
+
   const refetch = () => {
     setLoading(true);
     void load();
   };
 
-  return { list: filtered, summary, tier, query, isLoading, error, setTier, setQuery, refetch };
+  return { list: filtered, summary, tier, query, isLoading, error, setTier, setQuery, updatePelanggan, deletePelanggan, refetch };
 }

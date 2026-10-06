@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { KasirHeader } from "@/features/kasir/components/KasirHeader";
 import { ProductGrid } from "@/features/kasir/components/ProductGrid";
 import { CartPanel } from "@/features/kasir/components/CartPanel";
@@ -11,7 +12,15 @@ import { useKasir } from "@/features/kasir/hooks/useKasir";
 /** Perakit layar kasir: semua state interaktif dipegang useKasir. */
 export function KasirScreen() {
   const kasir = useKasir();
+  const searchParams = useSearchParams();
   const [payOpen, setPayOpen] = useState(false);
+
+  useEffect(() => {
+    const q = searchParams.get("q");
+    if (q) {
+      kasir.setQuery(q);
+    }
+  }, [searchParams, kasir]);
 
   const subtotal = useMemo(
     () => kasir.cart.reduce((acc, l) => acc + l.product.sellPrice * l.quantity, 0),

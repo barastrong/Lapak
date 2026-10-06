@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { StockSummaryCards } from "@/features/stok/components/StockSummaryCards";
@@ -15,6 +16,8 @@ export function StokScreen() {
   const state = useStock();
   const [adjustItem, setAdjustItem] = useState<StockItem | null>(null);
   const [adjustOpen, setAdjustOpen] = useState(false);
+  const [kulakModalOpen, setKulakModalOpen] = useState(false);
+  const [filterMenuOpen, setFilterMenuOpen] = useState(false);
 
   if (state.isLoading || !state.items) {
     return (
@@ -32,7 +35,17 @@ export function StokScreen() {
   };
 
   const saveAdjust = (a: StockAdjustment) => {
-    void a; // TODO: kirim ke API via stockService
+    state.adjustStock(a);
+  };
+
+  const handleShareWa = () => {
+    const lines = state.shopping.map((s) => `- ${s.name} (${s.qty})`).join("\n");
+    const text = `*DAFTAR BELANJA PASAR*\n${lines}\n\nMohon disiapkan ya agen. Terima kasih.`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+  };
+
+  const handlePrintSaku = () => {
+    window.print();
   };
 
   return (
@@ -51,14 +64,36 @@ export function StokScreen() {
             Periksa barang yang menipis sebelum berangkat kulakan ke pasar induk.
           </p>
         </div>
-        <div className="flex items-center gap-space-sm shrink-0">
-          <Button variant="surfaceContainer">
-            <Icon name="tune" className="text-lg" />
-            Filter Rak
-          </Button>
-          <Button>
+        <div className="flex items-center gap-space-sm shrink-0 relative">
+          <div className="relative">
+            <Button variant="surfaceContainer" onClick={() => setFilterMenuOpen((prev) => !prev)}>
+              <Icon name="tune" className="text-lg" />
+              <span>{state.rackFilter === "ALL" ? "Filter Rak" : `Rak: ${state.rackFilter}`}</span>
+            </Button>
+            {filterMenuOpen ? (
+              <div className="absolute right-0 top-full mt-2 w-48 bg-surface-container-lowest rounded-xl shadow-lg border border-surface-container py-1.5 z-20 flex flex-col font-label-ui text-xs">
+                {["ALL", "Lantai Depan", "Rak A2", "Rak B1", "Rak B3", "Rak C1", "Gantungan"].map((r) => (
+                  <button
+                    key={r}
+                    type="button"
+                    onClick={() => {
+                      state.setRackFilter(r);
+                      setFilterMenuOpen(false);
+                    }}
+                    className={cn(
+                      "px-3 py-2 text-left hover:bg-surface-container transition-colors cursor-pointer",
+                      state.rackFilter === r ? "font-bold text-primary bg-primary/5" : "text-on-surface"
+                    )}
+                  >
+                    {r === "ALL" ? "Semua Lokasi Rak" : r}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+          </div>
+          <Button onClick={() => setKulakModalOpen(true)}>
             <Icon name="add_shopping_cart" className="text-lg" />
-            + Catat Kulakan Masuk
+            Catat Kulakan Masuk
           </Button>
         </div>
       </div>
@@ -99,11 +134,11 @@ export function StokScreen() {
             </div>
             <ShoppingList items={state.shopping} onToggle={state.toggleShopping} />
             <div className="flex flex-col sm:flex-row gap-space-sm pt-space-xs">
-              <Button variant="surfaceContainer" className="flex-1">
+              <Button variant="surfaceContainer" className="flex-1" onClick={handleShareWa}>
                 <Icon name="chat" className="text-tertiary text-lg" />
                 <span className="truncate">Salin ke WA Agen</span>
               </Button>
-              <Button variant="surfaceContainer" className="flex-1">
+              <Button variant="surfaceContainer" className="flex-1" onClick={handlePrintSaku}>
                 <Icon name="print" className="text-primary text-lg" />
                 <span className="truncate">Cetak Saku</span>
               </Button>
@@ -142,6 +177,7 @@ export function StokScreen() {
             query={state.query}
             onQuery={state.setQuery}
             onOpenAdjustment={openAdjust}
+            onKulak={(row) => state.addShoppingItem(row.name)}
           />
           <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col md:flex-row items-center justify-between gap-space-md">
             <div className="flex items-center gap-space-md">
@@ -176,6 +212,64 @@ export function StokScreen() {
         reasons={state.reasons}
         onSave={saveAdjust}
       />
+
+      {/* Modal Catat Kulakan Masuk */}
+      {kulakModalOpen ? (
+        <div className="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-xs flex items-center justify-center p-4 cursor-pointer" onClick={() => setKulakModalOpen(false)}>
+          <div className="bg-surface-container-lowest rounded-xl shadow-xl max-w-md w-full p-space-lg flex flex-col gap-space-md relative cursor-default" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-space-xs">
+                <Icon name="add_shopping_cart" className="text-primary text-xl" />
+                <h3 className="font-headline-sm text-headline-sm text-on-surface">Catat Kulakan Masuk</h3>
+              </div>
+              <button type="button" className="text-on-surface-variant hover:text-on-surface p-1 cursor-pointer" onClick={() => setKulakModalOpen(false)} aria-label="Tutup">
+                <Icon name="close" />
+              </button>
+            </div>
+            <p className="text-body-sm text-on-surface-variant">
+              Tambah stok barang yang baru saja tiba dari pasar / distributor ke rak toko.
+            </p>
+            <div className="flex flex-col gap-2.5">
+              <input
+                id="kulak-nama"
+                placeholder="Nama Barang (contoh: Beras Rojolele 5kg)"
+                className="bg-surface-container-low px-3 py-2 rounded-lg text-body-sm text-on-surface border border-surface-container focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+              <div className="grid grid-cols-2 gap-2">
+                <input
+                  id="kulak-qty"
+                  type="number"
+                  placeholder="Jumlah Masuk"
+                  defaultValue={10}
+                  className="bg-surface-container-low px-3 py-2 rounded-lg text-body-sm text-on-surface border border-surface-container focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+                <input
+                  id="kulak-supplier"
+                  placeholder="Pemasok / Agen"
+                  defaultValue="Pasar Induk"
+                  className="bg-surface-container-low px-3 py-2 rounded-lg text-body-sm text-on-surface border border-surface-container focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+              </div>
+            </div>
+            <div className="flex items-center justify-end gap-space-sm pt-space-xs">
+              <Button variant="surfaceContainer" onClick={() => setKulakModalOpen(false)}>
+                Batal
+              </Button>
+              <Button
+                onClick={() => {
+                  const el = document.getElementById("kulak-nama") as HTMLInputElement | null;
+                  if (el?.value) {
+                    state.addShoppingItem(el.value);
+                  }
+                  setKulakModalOpen(false);
+                }}
+              >
+                Simpan Stok Masuk
+              </Button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

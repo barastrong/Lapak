@@ -21,6 +21,7 @@ export type ProdukState = {
   toggleAll: (ids: string[]) => void;
   clearSelection: () => void;
   removeProducts: (ids: string[]) => Promise<void>;
+  upsertProduct: (product: Product) => void;
   page: number;
   totalPages: number;
   setPage: (p: number) => void;
@@ -84,6 +85,17 @@ export function useProducts(): ProdukState {
 
   const clearSelection = () => setSelected([]);
 
+  const upsertProduct = (product: Product) => {
+    setAll((prev) => {
+      if (!prev) return [product];
+      const exists = prev.some((x) => x.id === product.id);
+      if (exists) {
+        return prev.map((x) => (x.id === product.id ? product : x));
+      }
+      return [product, ...prev];
+    });
+  };
+
   const removeProducts = async (ids: string[]) => {
     await deleteProducts(ids);
     setAll((prev) => prev?.filter((p) => !ids.includes(p.id)) ?? null);
@@ -110,6 +122,7 @@ export function useProducts(): ProdukState {
     toggleAll,
     clearSelection,
     removeProducts,
+    upsertProduct,
     page: current,
     totalPages,
     setPage,

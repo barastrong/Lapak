@@ -7,9 +7,18 @@ type ProductTableProps = {
   selected: string[];
   onToggle: (id: string) => void;
   onToggleAll: (ids: string[]) => void;
+  onEdit?: (product: Product) => void;
+  onHistory?: (product: Product) => void;
 };
 
-export function ProductTable({ products, selected, onToggle, onToggleAll }: ProductTableProps) {
+export function ProductTable({
+  products,
+  selected,
+  onToggle,
+  onToggleAll,
+  onEdit,
+  onHistory,
+}: ProductTableProps) {
   const allSelected = products.length > 0 && products.every((p) => selected.includes(p.id));
 
   return (
@@ -113,20 +122,24 @@ export function ProductTable({ products, selected, onToggle, onToggleAll }: Prod
                     )}
                   </td>
                   <td className="py-3.5 px-4 text-center whitespace-nowrap">
-                    <div className="inline-flex items-center gap-1">
+                    <div className="inline-flex items-center gap-1.5">
                       <button
                         type="button"
-                        className="w-8 h-8 rounded-lg hover:bg-primary/10 text-primary flex items-center justify-center transition-colors cursor-pointer"
+                        onClick={() => onEdit?.(p)}
+                        className="w-9 h-9 rounded-xl bg-surface-container-low hover:bg-primary hover:text-on-primary text-primary flex items-center justify-center transition-all cursor-pointer shadow-2xs border border-surface-container"
                         title="Ubah Produk"
+                        aria-label={`Ubah produk ${p.name}`}
                       >
-                        <Icon name="edit" className="text-base" />
+                        <Icon name="edit" className="text-lg" />
                       </button>
                       <button
                         type="button"
-                        className="w-8 h-8 rounded-lg hover:bg-surface-container text-on-surface-variant flex items-center justify-center transition-colors cursor-pointer"
+                        onClick={() => onHistory?.(p)}
+                        className="w-9 h-9 rounded-xl bg-surface-container-low hover:bg-secondary hover:text-on-secondary text-on-surface-variant flex items-center justify-center transition-all cursor-pointer shadow-2xs border border-surface-container"
                         title="Riwayat Stok"
+                        aria-label={`Riwayat stok ${p.name}`}
                       >
-                        <Icon name="history" className="text-base" />
+                        <Icon name="history" className="text-lg" />
                       </button>
                     </div>
                   </td>

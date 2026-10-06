@@ -42,6 +42,7 @@ export function useDashboard(): DashboardData & { isLoading: boolean; error: str
     salesWeek: data?.salesWeek ?? [],
     recentTransactions: data?.recentTransactions ?? [],
     topProducts: data?.topProducts ?? [],
+    paymentStats: data?.paymentStats ?? [],
     isLoading,
     error,
     refetch,

@@ -159,6 +159,31 @@ body {
   src: url("/fonts/material-symbols-outlined.ttf") format("truetype");
 }
 
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  @page {
+    margin: 1cm;
+    size: auto;
+  }
+
+  #printable-receipt {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 14px !important;
+  }
+}
+
 /* Sengaja di luar @layer: harus mengalahkan `line-height` dari utility `text-*`.
    JANGAN deklarasikan font-size di sini — itu yang bikin semua `text-*` mati. */
 .material-symbols-outlined {

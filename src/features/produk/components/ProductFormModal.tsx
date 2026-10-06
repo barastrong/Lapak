@@ -8,7 +8,8 @@ import type { Product } from "@/types/product";
 type ProductFormModalProps = {
   open: boolean;
   onClose: () => void;
-  onSave: (input: Omit<Product, "id">) => void;
+  onSave: (input: Omit<Product, "id">, id?: string) => void;
+  initialProduct?: Product | null;
 };
 
 const emptyState: Omit<Product, "id"> = {
@@ -23,21 +24,52 @@ const emptyState: Omit<Product, "id"> = {
   icon: "inventory_2",
 };
 
-/** Form modal tambah produk baru (data dikirim lewat onSave). */
-export function ProductFormModal({ open, onClose, onSave }: ProductFormModalProps) {
-  const [form, setForm] = useState(emptyState);
+export function ProductFormModal({ open, onClose, onSave, initialProduct }: ProductFormModalProps) {
+  if (!open) return null;
+
+  return (
+    <ProductFormModalContent
+      key={initialProduct?.id ?? "new"}
+      open={open}
+      onClose={onClose}
+      onSave={onSave}
+      initialProduct={initialProduct}
+    />
+  );
+}
+
+function ProductFormModalContent({ open, onClose, onSave, initialProduct }: ProductFormModalProps) {
+  const [form, setForm] = useState(
+    initialProduct
+      ? {
+          name: initialProduct.name,
+          sku: initialProduct.sku,
+          category: initialProduct.category,
+          unitLabel: initialProduct.unitLabel,
+          buyPrice: initialProduct.buyPrice,
+          sellPrice: initialProduct.sellPrice,
+          stock: initialProduct.stock,
+          minStock: initialProduct.minStock,
+          icon: initialProduct.icon,
+        }
+      : emptyState
+  );
 
   const set = <K extends keyof typeof form>(key: K, value: (typeof form)[K]) =>
     setForm((prev) => ({ ...prev, [key]: value }));
 
   const submit = () => {
-    onSave(form);
-    setForm(emptyState);
+    onSave(form, initialProduct?.id);
     onClose();
   };
 
   return (
-    <Modal open={open} onClose={onClose} title="Tambah Produk Baru" icon="inventory_2">
+    <Modal
+      open={open}
+      onClose={onClose}
+      title={initialProduct ? "Ubah Produk" : "Tambah Produk Baru"}
+      icon="inventory_2"
+    >
       <div className="flex flex-col gap-space-sm">
         <Field label="Nama Produk">
           <input
@@ -97,7 +129,7 @@ export function ProductFormModal({ open, onClose, onSave }: ProductFormModalProp
           </Field>
         </div>
         <div className="grid grid-cols-2 gap-space-sm">
-          <Field label="Stok Awal">
+          <Field label="Stok">
             <input
               type="number"
               min={0}
@@ -137,3 +169,4 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
     </label>
   );
 }
+

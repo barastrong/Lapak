@@ -15,14 +15,18 @@ type ModalProps = {
 export function Modal({ open, onClose, title, icon, children, className }: ModalProps) {
   if (!open) return null;
   return (
-    <div className="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-xs flex items-center justify-center p-4">
+    <div
+      className="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-xs flex items-center justify-center p-4 cursor-pointer print:p-0 print:static print:bg-white print:backdrop-blur-none"
+      onClick={onClose}
+    >
       <div
+        onClick={(e) => e.stopPropagation()}
         className={cn(
-          "bg-surface-container-lowest rounded-xl shadow-xl max-w-md w-full p-space-lg flex flex-col gap-space-md relative",
+          "bg-surface-container-lowest rounded-xl shadow-xl max-w-md w-full p-space-lg flex flex-col gap-space-md relative cursor-default print:max-w-none print:w-full print:p-0 print:shadow-none print:border-none",
           className
         )}
       >
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between print:hidden">
           <div className="flex items-center gap-space-xs">
             <Icon name={icon} className="text-primary text-xl" />
             <h3 className="font-headline-sm text-headline-sm text-on-surface">{title}</h3>

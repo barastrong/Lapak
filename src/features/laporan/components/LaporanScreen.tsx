@@ -32,6 +32,7 @@ export function LaporanScreen() {
       transactionCount: filteredTrx.length > 0 ? filteredTrx.length : Math.round(data.summary.transactionCount * factor),
       totalModal: Math.round(data.summary.totalModal * factor),
       netProfit: Math.round(data.summary.netProfit * factor),
+      dailyTarget: Math.round(data.summary.dailyTarget * factor),
       cashInDrawer: data.summary.cashInDrawer ? Math.round(data.summary.cashInDrawer * factor) : undefined,
       digitalBalance: data.summary.digitalBalance ? Math.round(data.summary.digitalBalance * factor) : undefined,
       pendingKasbon: data.summary.pendingKasbon ? Math.round(data.summary.pendingKasbon * factor) : undefined,
@@ -68,6 +69,16 @@ export function LaporanScreen() {
       ? "Puncak Minggu (Sabtu)"
       : "24 Mei (Bulan Ini)";
 
+  const rawTarget = cashierFilteredData.summary.dailyTarget;
+  const chartTarget =
+    activePeriod === "Bulan Ini"
+      ? Math.round(rawTarget / 30)
+      : activePeriod === "Minggu Ini"
+      ? Math.round(rawTarget / 7)
+      : Math.round(rawTarget / Math.max(1, cashierFilteredData.dailyProfit.length));
+
+  const targetLabel = activePeriod === "Hari Ini" ? "Target Sesi" : "Target Harian";
+
   return (
     <div className="flex flex-col gap-space-lg max-w-7xl mx-auto w-full pb-12">
       <LaporanHeader
@@ -89,7 +100,8 @@ export function LaporanScreen() {
       <ProfitChart
         data={cashierFilteredData.dailyProfit}
         todayLabel={todayLabel}
-        target={cashierFilteredData.summary.dailyTarget}
+        target={chartTarget}
+        targetLabel={targetLabel}
         callouts={cashierFilteredData.callouts}
       />
 

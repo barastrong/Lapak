@@ -146,7 +146,7 @@ export function ProfitChart({
             fontSize="11"
             fontFamily="Space Mono, monospace"
           >
-            Target {formatRupiah(safeTarget)}
+            {formatRupiah(safeTarget)}
           </text>
 
           {/* Area gradient */}

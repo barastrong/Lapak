@@ -56,12 +56,12 @@ export function KasirScreen() {
         products={kasir.products ?? []}
         onAdd={kasir.addToCart}
       />
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
-        <div className="lg:col-span-7 flex flex-col gap-space-md">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-md lg:gap-space-lg items-start">
+        <div className="lg:col-span-7 xl:col-span-8 flex flex-col gap-space-md">
           <ProductGrid products={kasir.products ?? []} onAdd={kasir.addToCart} />
           <KioskStatusBar />
         </div>
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-20">
           <CartPanel
             lines={kasir.cart}
             subtotal={subtotal}

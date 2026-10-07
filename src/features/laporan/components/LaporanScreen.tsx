@@ -80,7 +80,7 @@ export function LaporanScreen() {
   const targetLabel = activePeriod === "Hari Ini" ? "Target Sesi" : "Target Harian";
 
   return (
-    <div className="flex flex-col gap-space-lg max-w-7xl mx-auto w-full pb-12">
+    <div className="flex flex-col gap-space-lg w-full pb-12">
       <LaporanHeader
         active={activePeriod}
         periods={data.periods}

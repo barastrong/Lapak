@@ -21,13 +21,22 @@ export type DashboardData = {
   paymentStats: PaymentMethodStat[];
 };
 
-/** // TODO: hook ke API — ganti isi dengan fetch("/api/dashboard/summary"). */
+/** Ambil data dashboard ringkasan dari backend MySQL API. */
 export async function getDashboardData(): Promise<DashboardData> {
-  return {
-    summary: dashboardSummaryMock,
-    salesWeek: salesWeekMock,
-    recentTransactions: recentTransactionsMock,
-    topProducts: topProductsMock,
-    paymentStats: paymentMethodStatsMock,
-  };
+  try {
+    const res = await fetch("/api/dashboard", { cache: "no-store" });
+    if (!res.ok) throw new Error("Gagal mengambil dashboard dari server.");
+    const json = await res.json();
+    if (json.success && json.data) return json.data as DashboardData;
+    throw new Error(json.error || "Respons dashboard tidak valid.");
+  } catch (error) {
+    console.warn("[DashboardService] Fallback lokal:", error);
+    return {
+      summary: dashboardSummaryMock,
+      salesWeek: salesWeekMock,
+      recentTransactions: recentTransactionsMock,
+      topProducts: topProductsMock,
+      paymentStats: paymentMethodStatsMock,
+    };
+  }
 }

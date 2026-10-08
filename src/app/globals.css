@@ -160,27 +160,32 @@ body {
 }
 
 @media print {
-  body {
-    background: #ffffff !important;
-    color: #000000 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-  }
-
   @page {
-    margin: 1cm;
+    margin: 0;
     size: auto;
   }
 
+  body * {
+    visibility: hidden !important;
+  }
+
+  #printable-receipt,
+  #printable-receipt * {
+    visibility: visible !important;
+  }
+
   #printable-receipt {
-    width: 100% !important;
-    max-width: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
     margin: 0 !important;
-    padding: 0 !important;
+    padding: 2rem !important;
     border: none !important;
     box-shadow: none !important;
-    font-size: 14px !important;
+    background: white !important;
+    font-size: 13px !important;
   }
 }
 

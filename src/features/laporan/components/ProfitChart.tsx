@@ -12,7 +12,7 @@ type ProfitChartProps = {
   callouts: ChartCallout[];
 };
 
-const VIEW = { w: 900, h: 240, pl: 65, pr: 860 };
+const VIEW = { w: 900, h: 380, pl: 65, pr: 860 };
 
 function createSmoothPath(pts: { x: number; y: number }[]): string {
   if (pts.length === 0) return "";
@@ -51,19 +51,22 @@ export function ProfitChart({
   const currentIdx = hoveredIdx !== null && hoveredIdx < data.length ? hoveredIdx : data.length - 1;
 
   const maxProfit = Math.max(...data.map((d) => d.profit), 1);
+  const minProfit = Math.min(...data.map((d) => d.profit));
   const safeTarget = target > 0 && target <= maxProfit * 1.8 ? target : Math.round(maxProfit * 0.7);
   const maxVal = Math.max(maxProfit * 1.15, safeTarget * 1.15, 1);
-  const minVal = 0;
+  const spread = maxVal - minProfit;
+  const minVal = Math.max(0, minProfit - spread * 0.15);
 
+  const BOTTOM = 310, CHART_H = 270;
   const points = data.map((d, i) => {
     const x = data.length === 1 ? (VIEW.pl + VIEW.pr) / 2 : VIEW.pl + (i / (data.length - 1)) * (VIEW.pr - VIEW.pl);
-    const y = 190 - ((d.profit - minVal) / (maxVal - minVal)) * 160;
+    const y = BOTTOM - ((d.profit - minVal) / (maxVal - minVal)) * CHART_H;
     return { ...d, x, y };
   });
 
   const smoothLine = createSmoothPath(points);
-  const area = `${smoothLine} L ${points[points.length - 1].x},190 L ${points[0].x},190 Z`;
-  const targetY = 190 - ((safeTarget - minVal) / (maxVal - minVal)) * 160;
+  const area = `${smoothLine} L ${points[points.length - 1].x},${BOTTOM} L ${points[0].x},${BOTTOM} Z`;
+  const targetY = BOTTOM - ((safeTarget - minVal) / (maxVal - minVal)) * CHART_H;
 
   const activePoint = points[currentIdx] ?? points[points.length - 1];
 
@@ -114,7 +117,7 @@ export function ProfitChart({
           </div>
         )}
 
-        <svg className="w-full h-64 overflow-visible" preserveAspectRatio="none" viewBox="0 0 900 240">
+        <svg className="w-full h-96 overflow-visible" preserveAspectRatio="none" viewBox="0 0 900 380">
           <defs>
             <linearGradient id="profitGrad" x1="0%" x2="0%" y1="0%" y2="100%">
               <stop offset="0%" stopColor="#88d7a1" stopOpacity="0.45" />
@@ -124,8 +127,8 @@ export function ProfitChart({
 
           {/* Grid lines */}
           <GridLine x1={VIEW.pl} x2={VIEW.pr} y={40} yLabel={44} text={formatRupiah(Math.round(maxVal * 0.9))} />
-          <GridLine x1={VIEW.pl} x2={VIEW.pr} y={115} yLabel={119} text={formatRupiah(Math.round(maxVal * 0.5))} />
-          <GridLine x1={VIEW.pl} x2={VIEW.pr} y={190} yLabel={194} text="Rp 0" />
+          <GridLine x1={VIEW.pl} x2={VIEW.pr} y={175} yLabel={179} text={formatRupiah(Math.round((maxVal + minVal) / 2))} />
+          <GridLine x1={VIEW.pl} x2={VIEW.pr} y={310} yLabel={314} text={formatRupiah(Math.round(minVal))} />
 
           {/* Target line */}
           <line
@@ -138,16 +141,6 @@ export function ProfitChart({
             strokeOpacity="0.6"
             strokeWidth="1.5"
           />
-          <text
-            textAnchor="end"
-            x={VIEW.pl - 8}
-            y={targetY + 4}
-            fill="#737783"
-            fontSize="11"
-            fontFamily="Space Mono, monospace"
-          >
-            {formatRupiah(safeTarget)}
-          </text>
 
           {/* Area gradient */}
           <path d={area} fill="url(#profitGrad)" />
@@ -195,7 +188,7 @@ export function ProfitChart({
                 <text
                   textAnchor="middle"
                   x={p.x}
-                  y={215}
+                  y={335}
                   fill={isHovered ? "#004524" : "#737783"}
                   className="font-label-code"
                   fontSize="11"

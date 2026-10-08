@@ -120,12 +120,21 @@ export const periodCashierProfitCharts: Record<PeriodOption, Record<string, Dail
   },
 };
 
-/** Ambil data buku kas & laporan penjualan sesuai filter periode terpilih. */
-export function getLaporanData(period: PeriodOption): Promise<LaporanData> {
+/** Ambil data buku kas & laporan keuangan dari backend MySQL API. */
+export async function getLaporanData(period: PeriodOption): Promise<LaporanData> {
+  try {
+    const res = await fetch(`/api/reports?period=${encodeURIComponent(period)}`, { cache: "no-store" });
+    if (!res.ok) throw new Error("Gagal mengambil laporan dari server.");
+    const json = await res.json();
+    if (json.success && json.data) return json.data;
+  } catch (error) {
+    console.warn("[ReportService] Fallback lokal laporan:", error);
+  }
+
   const summary = periodSummaries[period] ?? periodSummaries["Bulan Ini"];
   const dailyProfit = periodProfitCharts[period] ?? periodProfitCharts["Bulan Ini"];
 
-  return Promise.resolve({
+  return {
     summary,
     periods: periodOptionsMock,
     dailyProfit,
@@ -135,5 +144,5 @@ export function getLaporanData(period: PeriodOption): Promise<LaporanData> {
     paymentBreakdown: paymentMethodBreakdownMock,
     categoryBreakdown: categoryProfitabilityMock,
     reconciliationHistory: reconciliationHistoryMock,
-  });
+  };
 }

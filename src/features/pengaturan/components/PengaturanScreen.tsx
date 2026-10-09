@@ -125,6 +125,148 @@ export function PengaturanScreen() {
               <Field label="Shift Kerja Aktif" value="Pagi (06:00 - 14:00)" />
               <Field label="Kas Modal Awal Default" value="Rp 200.000" />
             </div>
+            <Button variant="surfaceContainer" className="self-start mt-2">
+              <Icon name="group_add" className="text-base" />
+              Kelola Daftar Kasir
+            </Button>
+          </div>
+
+          <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
+            <div className="flex items-center gap-space-xs">
+              <Icon name="payments" className="text-primary text-xl" />
+              <h2 className="font-headline-md text-headline-md text-on-surface">Metode Pembayaran</h2>
+            </div>
+            <div className="flex flex-col gap-2 pt-1">
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <div className="flex items-center gap-2">
+                  <Icon name="credit_card" className="text-base text-on-surface-variant" />
+                  <span>Tunai (Cash)</span>
+                </div>
+                <input type="checkbox" defaultChecked className="w-4 h-4 rounded accent-primary" />
+              </label>
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <div className="flex items-center gap-2">
+                  <Icon name="credit_card" className="text-base text-on-surface-variant" />
+                  <span>Kartu Debit/Kredit (EDC)</span>
+                </div>
+                <input type="checkbox" defaultChecked className="w-4 h-4 rounded accent-primary" />
+              </label>
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <div className="flex items-center gap-2">
+                  <Icon name="qr_code_2" className="text-base text-on-surface-variant" />
+                  <span>QRIS (Scan Bayar)</span>
+                </div>
+                <input type="checkbox" defaultChecked className="w-4 h-4 rounded accent-primary" />
+              </label>
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <div className="flex items-center gap-2">
+                  <Icon name="account_balance" className="text-base text-on-surface-variant" />
+                  <span>Transfer Bank</span>
+                </div>
+                <input type="checkbox" className="w-4 h-4 rounded accent-primary" />
+              </label>
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <div className="flex items-center gap-2">
+                  <Icon name="account_balance_wallet" className="text-base text-on-surface-variant" />
+                  <span>E-Wallet (Gopay, OVO, Dana, dll)</span>
+                </div>
+                <input type="checkbox" defaultChecked className="w-4 h-4 rounded accent-primary" />
+              </label>
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <div className="flex items-center gap-2">
+                  <Icon name="receipt_long" className="text-base text-on-surface-variant" />
+                  <span>Bon / Hutang Pelanggan</span>
+                </div>
+                <input type="checkbox" className="w-4 h-4 rounded accent-primary" />
+              </label>
+            </div>
+          </div>
+
+          <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
+            <div className="flex items-center gap-space-xs">
+              <Icon name="receipt" className="text-primary text-xl" />
+              <h2 className="font-headline-md text-headline-md text-on-surface">Pajak & Biaya Tambahan</h2>
+            </div>
+            <div className="flex flex-col gap-2 pt-1">
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <span>Terapkan PPN 11%</span>
+                <input type="checkbox" className="w-4 h-4 rounded accent-primary" />
+              </label>
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <span>Service Charge / Biaya Layanan</span>
+                <input type="checkbox" className="w-4 h-4 rounded accent-primary" />
+              </label>
+              <Field label="% Service Charge" value="5" />
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <span>Pembulatan Otomatis (ke ratusan terdekat)</span>
+                <input type="checkbox" defaultChecked className="w-4 h-4 rounded accent-primary" />
+              </label>
+            </div>
+          </div>
+
+          <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
+            <div className="flex items-center gap-space-xs">
+              <Icon name="notifications" className="text-primary text-xl" />
+              <h2 className="font-headline-md text-headline-md text-on-surface">Notifikasi & Peringatan</h2>
+            </div>
+            <div className="flex flex-col gap-2 pt-1">
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <span>Peringatan stok menipis (di bawah minimum)</span>
+                <input type="checkbox" defaultChecked className="w-4 h-4 rounded accent-primary" />
+              </label>
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <span>Notifikasi target penjualan harian tercapai</span>
+                <input type="checkbox" defaultChecked className="w-4 h-4 rounded accent-primary" />
+              </label>
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <span>Pengingat tutup kasir akhir hari</span>
+                <input type="checkbox" defaultChecked className="w-4 h-4 rounded accent-primary" />
+              </label>
+              <label className="flex items-center justify-between text-xs text-on-surface py-1">
+                <span>Notifikasi barang mendekati kadaluarsa</span>
+                <input type="checkbox" className="w-4 h-4 rounded accent-primary" />
+              </label>
+            </div>
+          </div>
+
+          <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
+            <div className="flex items-center gap-space-xs">
+              <Icon name="palette" className="text-primary text-xl" />
+              <h2 className="font-headline-md text-headline-md text-on-surface">Tampilan & Format</h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+              <label className="flex flex-col gap-1">
+                <span className="font-label-ui text-xs text-on-surface">Tema Warna</span>
+                <select className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full">
+                  <option>Terang (Light)</option>
+                  <option>Gelap (Dark)</option>
+                  <option>Otomatis (Sistem)</option>
+                </select>
+              </label>
+              <label className="flex flex-col gap-1">
+                <span className="font-label-ui text-xs text-on-surface">Bahasa</span>
+                <select className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full">
+                  <option>Indonesia</option>
+                  <option>English</option>
+                </select>
+              </label>
+              <label className="flex flex-col gap-1">
+                <span className="font-label-ui text-xs text-on-surface">Mata Uang</span>
+                <select className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full">
+                  <option>IDR (Rp)</option>
+                  <option>USD ($)</option>
+                  <option>MYR (RM)</option>
+                </select>
+              </label>
+              <label className="flex flex-col gap-1">
+                <span className="font-label-ui text-xs text-on-surface">Format Tanggal</span>
+                <select className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full">
+                  <option>DD/MM/YYYY</option>
+                  <option>MM/DD/YYYY</option>
+                  <option>YYYY-MM-DD</option>
+                </select>
+              </label>
+            </div>
           </div>
 
           <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">

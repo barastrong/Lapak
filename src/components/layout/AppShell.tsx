@@ -5,7 +5,7 @@ import { Header } from "@/components/layout/Header";
 /** Kerangka utama halaman ter-aplikasi: Sidebar + Header tetap, konten di tengah. */
 export function AppShell({ children }: { children: ReactNode }) {
   return (
-    <div className="pl-60 min-h-screen bg-surface print:pl-0 print:bg-white">
+    <div className="lg:pl-60 min-h-screen bg-surface print:pl-0 print:bg-white">
       <div className="print:hidden">
         <Sidebar />
         <Header />

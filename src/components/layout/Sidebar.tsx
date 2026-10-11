@@ -6,10 +6,10 @@ import { StoreSwitcher } from "@/components/layout/StoreSwitcher";
 import { LogoutButton } from "@/components/layout/LogoutButton";
 import { Icon } from "@/components/ui/Icon";
 
-/** Sidebar tetap (fixed kiri) berisi brand, switch toko, dan navigasi utama. */
+/** Sidebar tetap (fixed kiri) berisi brand, switch toko, dan navigasi utama. Drawer di mobile. */
 export function Sidebar() {
   return (
-    <aside className="fixed left-0 top-0 h-full w-60 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <aside className="hidden lg:fixed lg:flex lg:left-0 lg:top-0 lg:h-full lg:w-60 bg-surface-container-lowest z-50 flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
       <div className="flex flex-col">
         <SidebarBrand />
         <div className="px-space-md pb-space-md">

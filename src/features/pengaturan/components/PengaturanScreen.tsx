@@ -48,10 +48,10 @@ export function PengaturanScreen() {
             </div>
             <div className="flex flex-col gap-1">
               <span className="font-label-ui text-xs text-on-surface">Alamat Lengkap</span>
-              <input
-                className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full"
-                defaultValue={current.address}
-              />
+               <input
+                 className="bg-surface-container-low border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-surface-container focus:outline-none w-full"
+                 defaultValue={current.address}
+               />
             </div>
             <div className="flex items-center justify-end gap-space-sm pt-space-xs">
               <Button
@@ -237,34 +237,34 @@ export function PengaturanScreen() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
               <label className="flex flex-col gap-1">
                 <span className="font-label-ui text-xs text-on-surface">Tema Warna</span>
-                <select className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full">
-                  <option>Terang (Light)</option>
-                  <option>Gelap (Dark)</option>
-                  <option>Otomatis (Sistem)</option>
-                </select>
+                 <select className="bg-surface-container-low border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-surface-container focus:outline-none w-full">
+                   <option>Terang (Light)</option>
+                   <option>Gelap (Dark)</option>
+                   <option>Otomatis (Sistem)</option>
+                 </select>
               </label>
               <label className="flex flex-col gap-1">
                 <span className="font-label-ui text-xs text-on-surface">Bahasa</span>
-                <select className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full">
-                  <option>Indonesia</option>
-                  <option>English</option>
-                </select>
+                 <select className="bg-surface-container-low border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-surface-container focus:outline-none w-full">
+                   <option>Indonesia</option>
+                   <option>English</option>
+                 </select>
               </label>
               <label className="flex flex-col gap-1">
                 <span className="font-label-ui text-xs text-on-surface">Mata Uang</span>
-                <select className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full">
-                  <option>IDR (Rp)</option>
-                  <option>USD ($)</option>
-                  <option>MYR (RM)</option>
-                </select>
+                 <select className="bg-surface-container-low border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-surface-container focus:outline-none w-full">
+                   <option>IDR (Rp)</option>
+                   <option>USD ($)</option>
+                   <option>MYR (RM)</option>
+                 </select>
               </label>
               <label className="flex flex-col gap-1">
                 <span className="font-label-ui text-xs text-on-surface">Format Tanggal</span>
-                <select className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full">
-                  <option>DD/MM/YYYY</option>
-                  <option>MM/DD/YYYY</option>
-                  <option>YYYY-MM-DD</option>
-                </select>
+                 <select className="bg-surface-container-low border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-surface-container focus:outline-none w-full">
+                   <option>DD/MM/YYYY</option>
+                   <option>MM/DD/YYYY</option>
+                   <option>YYYY-MM-DD</option>
+                 </select>
               </label>
             </div>
           </div>
@@ -277,24 +277,16 @@ export function PengaturanScreen() {
             <p className="text-body-sm text-xs text-on-surface-variant">
               Cadangkan database barang, pelanggan, dan riwayat transaksi warung secara berkala.
             </p>
-            <div className="flex flex-wrap gap-2 pt-1">
-              <button
-                type="button"
-                onClick={() => alert("Cadangan data offline berhasil diunduh!")}
-                className="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container hover:bg-surface-container-high rounded-xl text-xs font-label-ui font-semibold text-on-surface cursor-pointer"
-              >
-                <Icon name="download" className="text-sm" />
-                Cadangkan Data Lokal (JSON)
-              </button>
-              <button
-                type="button"
-                onClick={() => alert("Sinkronisasi cloud berhasil diselesaikan!")}
-                className="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container hover:bg-surface-container-high rounded-xl text-xs font-label-ui font-semibold text-on-surface cursor-pointer"
-              >
-                <Icon name="sync" className="text-sm" />
-                Sinkronkan ke Cloud
-              </button>
-            </div>
+             <div className="flex flex-wrap gap-2 pt-1">
+               <Button variant="surface" className="text-xs" onClick={() => alert("Cadangan data offline berhasil diunduh!")}>
+                 <Icon name="download" className="text-sm" />
+                 Cadangkan Data Lokal (JSON)
+               </Button>
+               <Button variant="surface" className="text-xs" onClick={() => alert("Sinkronisasi cloud berhasil diselesaikan!")}>
+                 <Icon name="sync" className="text-sm" />
+                 Sinkronkan ke Cloud
+               </Button>
+             </div>
           </div>
         </div>
 
@@ -381,10 +373,10 @@ function Field({ label, value }: { label: string; value: string }) {
   return (
     <label className="flex flex-col gap-1">
       <span className="font-label-ui text-xs text-on-surface">{label}</span>
-      <input
-        className="bg-[#FAFAF7] border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-white focus:outline-none w-full"
-        defaultValue={value}
-      />
+       <input
+         className="bg-surface-container-low border border-on-surface/15 rounded-lg px-3 py-2 text-body-sm text-on-surface focus:border-primary focus:bg-surface-container focus:outline-none w-full"
+         defaultValue={value}
+       />
     </label>
   );
 }

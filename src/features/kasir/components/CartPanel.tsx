@@ -26,9 +26,9 @@ export function CartPanel({
           <div className="flex items-start justify-between">
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-headline-md text-headline-md tracking-tight text-primary font-extrabold uppercase">
-                  NOTA KONTAN
-                </span>
+                 <span className="font-headline text-headline-lg font-bold tracking-tight text-primary uppercase">
+                   NOTA KONTAN
+                 </span>
                 <span className="text-[10px] uppercase tracking-wider font-label-code px-1.5 py-0.5 rounded bg-surface-container text-primary font-bold">
                   ASLI
                 </span>
@@ -75,9 +75,9 @@ export function CartPanel({
                   <span className="font-label-ui text-on-surface font-semibold text-xs leading-tight">
                     {line.product.name}
                   </span>
-                  <span className="font-label-code text-[11px] text-on-surface-variant">
-                    @ {formatRupiah(line.product.sellPrice)}
-                  </span>
+                   <span className="font-label-code text-body-sm text-on-surface">
+                     @ {formatRupiah(line.product.sellPrice)}
+                   </span>
                 </div>
                 <div className="col-span-2 flex items-center justify-center gap-1">
                   <QtyBtn label="-" onClick={() => onChangeQuantity(line.product.id, -1)} />
@@ -90,14 +90,14 @@ export function CartPanel({
                   <span className="font-label-numeric text-xs font-bold text-on-surface">
                     {formatRupiah(line.product.sellPrice * line.quantity)}
                   </span>
-                  <button
-                    type="button"
-                    onClick={() => onRemove(line.product.id)}
-                    className="text-outline hover:text-error opacity-0 group-hover:opacity-100 transition-opacity"
-                    aria-label={`Hapus ${line.product.name}`}
-                  >
-                    <Icon name="delete" className="text-base" />
-                  </button>
+                   <button
+                     type="button"
+                     onClick={() => onRemove(line.product.id)}
+                     className="text-outline hover:text-error lg:opacity-0 lg:group-hover:opacity-100 opacity-100 transition-opacity"
+                     aria-label={`Hapus ${line.product.name}`}
+                   >
+                     <Icon name="delete" className="text-base" />
+                   </button>
                 </div>
               </div>
             ))}
@@ -144,7 +144,7 @@ function QtyBtn({ label, onClick }: { label: string; onClick: () => void }) {
       type="button"
       onClick={onClick}
       aria-label={label === "+" ? "Tambah jumlah" : "Kurangi jumlah"}
-      className="w-7 h-7 rounded-md bg-surface-container text-on-surface flex items-center justify-center text-sm font-bold hover:bg-surface-container-high active:bg-surface-container transition-colors"
+      className="w-10 h-10 rounded-md bg-surface-container text-on-surface flex items-center justify-center text-sm font-bold hover:bg-surface-container-high active:bg-surface-container transition-colors"
     >
       {label}
     </button>

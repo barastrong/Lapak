@@ -6,8 +6,11 @@ import { useRouter } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { Icon } from "@/components/ui/Icon";
 
-/** Header atas halaman (shift, kas awal, pencarian cepat, tombol aksi). */
-export function Header() {
+type HeaderProps = {
+  onMenuClick?: () => void;
+};
+
+export function Header({ onMenuClick }: HeaderProps) {
   const router = useRouter();
   const [headerSearch, setHeaderSearch] = useState("");
 
@@ -18,8 +21,16 @@ export function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-60 right-0 h-16 bg-surface-container-lowest z-40 px-space-lg flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <header className="fixed top-0 lg:left-60 left-0 right-0 h-16 bg-surface-container-lowest z-40 px-space-lg flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
       <div className="flex items-center gap-space-md">
+        <button
+          type="button"
+          onClick={onMenuClick}
+          className="lg:hidden p-2 hover:bg-surface-container rounded-lg transition-colors"
+          aria-label="Menu"
+        >
+          <Icon name="menu" className="text-on-surface text-lg" />
+        </button>
         <div className="flex items-center gap-space-xs font-label-code text-label-code text-on-surface-variant">
           <Icon name="wb_sunny" className="text-primary text-base" />
           <span>{siteConfig.shift}</span>

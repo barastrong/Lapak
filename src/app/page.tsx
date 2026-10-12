@@ -122,7 +122,7 @@ function HeroSection({ receipt }: { receipt: ReceiptData }) {
           </div>
           <MetricStrip />
         </div>
-        <div className="lg:col-span-6 flex justify-center lg:justify-start relative pl-space-lg">
+        <div className="lg:col-span-6 flex justify-center lg:justify-end relative pr-space-lg">
           <NotaCard receipt={receipt} />
         </div>
       </div>

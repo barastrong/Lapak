@@ -144,7 +144,7 @@ function QtyBtn({ label, onClick }: { label: string; onClick: () => void }) {
       type="button"
       onClick={onClick}
       aria-label={label === "+" ? "Tambah jumlah" : "Kurangi jumlah"}
-      className="w-10 h-10 rounded-md bg-surface-container text-on-surface flex items-center justify-center text-sm font-bold hover:bg-surface-container-high active:bg-surface-container transition-colors"
+      className="w-11 h-11 rounded-md bg-surface-container text-on-surface flex items-center justify-center text-sm font-bold hover:bg-surface-container-high active:bg-surface-container transition-colors"
     >
       {label}
     </button>

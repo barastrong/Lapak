@@ -83,6 +83,7 @@ export function KasirHeader({
             <input
               className="w-full pl-11 pr-4 py-2.5 bg-surface-container-low text-on-surface rounded-lg font-body-md text-body-md placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container transition-all"
               id="katalog-search"
+              aria-label="Cari nama barang atau scan barcode"
               placeholder="Cari nama barang atau scan barcode..."
               type="text"
               value={query}
@@ -104,6 +105,7 @@ export function KasirHeader({
               key={c.name}
               type="button"
               onClick={() => onSelectCategory(c.id)}
+              aria-pressed={activeCategory === c.id}
               className={cn(
                 "px-3.5 py-1.5 rounded-full font-label-ui text-body-sm whitespace-nowrap transition-colors",
                 activeCategory === c.id

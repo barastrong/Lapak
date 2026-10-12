@@ -286,7 +286,7 @@ export function ResetPasswordForm() {
           <div className="flex items-center justify-between text-body-sm pt-2">
             {resendCountdown > 0 ? (
               <span className="text-on-surface-variant">
-                Kirim ulang dalam <strong className="text-on-surface font-label-numeric">{resendCountdown}d</strong>
+                Kirim ulang dalam <strong className="text-on-surface font-label-numeric">{resendCountdown} dtk</strong>
               </span>
             ) : (
               <button

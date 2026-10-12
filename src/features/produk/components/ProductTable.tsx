@@ -25,7 +25,7 @@ export function ProductTable({
     <div className="bg-surface-container-lowest rounded-2xl shadow-sm border border-surface-container overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
-          <thead>
+          <thead className="sticky top-0 z-10">
             <tr className="bg-surface-container-low border-b border-surface-container text-on-surface-variant font-label-code text-xs uppercase tracking-wider select-none">
               <th className="py-3.5 px-4 w-10 text-center">
                 <input

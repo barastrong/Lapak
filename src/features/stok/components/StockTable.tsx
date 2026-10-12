@@ -122,6 +122,7 @@ export function StockTable({
               key={st}
               type="button"
               onClick={() => onStatusFilter?.(st)}
+              aria-pressed={statusFilter === st}
               className={cn(
                 "px-2.5 py-1 rounded-lg transition-all cursor-pointer text-xs font-medium",
                 statusFilter === st

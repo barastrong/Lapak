@@ -45,7 +45,7 @@ function ProductCard({ product, onAdd }: ProductCardProps) {
       </div>
       <div className="flex flex-col flex-1 justify-between">
         <div>
-          <h2 className="font-headline-sm text-body-md text-on-surface line-clamp-1 font-semibold">
+            <h2 className="font-headline-sm text-on-surface line-clamp-1 font-semibold">
             {product.name}
           </h2>
           <span className="text-xs text-on-surface-variant">

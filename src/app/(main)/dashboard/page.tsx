@@ -32,7 +32,7 @@ export default async function DashboardPage() {
             </span>
           </div>
           <h1 className="font-headline-lg text-headline-lg text-on-surface tracking-tight font-bold">
-            Selamat datang, Bu Sari 👋
+            Selamat datang, Bu Sari
           </h1>
           <p className="text-body-sm text-on-surface-variant">
             Pantau arus kas, stok sembako, dan transaksi harian Warung Bu Sari secara real-time.

@@ -68,6 +68,13 @@ export function CartPanel({
             <span className="col-span-2 text-center">Jml</span>
             <span className="col-span-4 text-right">Subtotal</span>
           </div>
+          {lines.length === 0 ? (
+            <div className="flex flex-col items-center justify-center gap-2 py-10 text-center">
+              <Icon name="shopping_cart" className="text-4xl text-outline-variant" />
+              <p className="font-label-ui text-label-ui text-on-surface">Keranjang masih kosong</p>
+              <p className="text-body-sm text-xs text-on-surface-variant">Ketuk produk di katalog untuk mulai transaksi.</p>
+            </div>
+          ) : (
           <div className="flex flex-col gap-2.5 max-h-[310px] overflow-y-auto pr-1">
             {lines.map((line) => (
               <div key={line.product.id} className="grid grid-cols-12 items-center text-body-sm py-1.5 group">
@@ -102,6 +109,7 @@ export function CartPanel({
               </div>
             ))}
           </div>
+          )}
           <div className="py-1">
             <div className="w-full h-px bg-surface-container-highest"></div>
           </div>

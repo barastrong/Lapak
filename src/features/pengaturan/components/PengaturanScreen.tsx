@@ -13,8 +13,9 @@ export function PengaturanScreen() {
 
   if (isLoading || !profile) {
     return (
-      <div className="flex items-center justify-center py-24 text-on-surface-variant">
-        Memuat pengaturan...
+      <div className="flex flex-col items-center justify-center gap-3 py-24 text-on-surface-variant text-center">
+        <span className="inline-block w-8 h-8 border-[3px] border-primary-container border-t-transparent rounded-full animate-spin" aria-hidden="true" />
+        <p className="font-label-ui text-label-ui">Memuat pengaturan...</p>
       </div>
     );
   }

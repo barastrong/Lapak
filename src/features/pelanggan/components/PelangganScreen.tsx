@@ -86,6 +86,7 @@ export function PelangganScreen() {
             <input
               className="bg-surface-container-low pl-9 pr-4 py-2 rounded-lg text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary w-64 md:w-80 transition-all placeholder:text-on-surface-variant"
               placeholder="Cari nama, telepon, atau alamat..."
+              aria-label="Cari nama, telepon, atau alamat"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
@@ -96,6 +97,7 @@ export function PelangganScreen() {
                 key={t}
                 type="button"
                 onClick={() => setTier(t as PelangganTier | "Semua")}
+                aria-pressed={tier === t}
                 className={cn(
                   "px-3 py-1.5 rounded-lg font-label-ui text-label-ui transition-all text-xs",
                   tier === t
@@ -111,7 +113,7 @@ export function PelangganScreen() {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
-            <thead>
+            <thead className="sticky top-0 z-10">
               <tr className="bg-surface-container-low text-on-surface-variant font-label-code text-label-code text-xs uppercase tracking-wider">
                 <th className="py-3 px-space-md">Nama</th>
                 <th className="py-3 px-space-md">Kontak</th>

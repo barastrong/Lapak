@@ -137,6 +137,7 @@ export function TransactionTable({ rows, cashierFilter = "ALL" }: TransactionTab
                 setSelectedMethod(m);
                 setPage(1);
               }}
+              aria-pressed={selectedMethod === m}
               className={cn(
                 "px-3 py-1 rounded-lg transition-all shrink-0 cursor-pointer font-medium",
                 selectedMethod === m

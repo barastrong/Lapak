@@ -50,8 +50,15 @@ export function ProdukScreen() {
 
   if (state.isLoading || state.products.length === 0) {
     return (
-      <div className="flex items-center justify-center py-24 text-on-surface-variant">
-        {state.isLoading ? "Memuat produk..." : "Belum ada produk."}
+      <div className="flex flex-col items-center justify-center gap-3 py-24 text-on-surface-variant text-center">
+        {state.isLoading ? (
+          <span className="inline-block w-8 h-8 border-[3px] border-primary-container border-t-transparent rounded-full animate-spin" aria-hidden="true" />
+        ) : (
+          <Icon name="inventory_2" className="text-4xl text-outline-variant" />
+        )}
+        <p className="font-label-ui text-label-ui">
+          {state.isLoading ? "Memuat produk..." : "Belum ada produk."}
+        </p>
       </div>
     );
   }

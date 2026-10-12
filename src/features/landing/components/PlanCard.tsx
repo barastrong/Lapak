@@ -7,7 +7,7 @@ export function PlanCard({ plan }: { plan: PricePlan }) {
     <div
       className={cn(
         "bg-surface-container-lowest rounded-2xl p-space-lg flex flex-col justify-between hover:shadow-md transition-shadow relative",
-        plan.popular ? "shadow-xl transform md:-translate-y-2" : "shadow-sm"
+        plan.popular ? "shadow-lg border-2 border-secondary-container md:-translate-y-3" : "shadow-sm border border-surface-container/40"
       )}
     >
       {plan.popular ? (

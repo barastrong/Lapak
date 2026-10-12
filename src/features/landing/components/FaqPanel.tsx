@@ -8,7 +8,7 @@ import type { Faq } from "@/features/landing/types";
 
 export function FaqPanel({ faqs }: { faqs: Faq[] }) {
   const [selectedCategory, setSelectedCategory] = useState<string>("Semua");
-  const [openIndices, setOpenIndices] = useState<number[]>([0]);
+  const [openIndices, setOpenIndices] = useState<number[]>([]);
 
   const categories = [
     "Semua",
@@ -60,8 +60,8 @@ export function FaqPanel({ faqs }: { faqs: Faq[] }) {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4 items-start">
-        {filteredFaqs.map((f, idx) => {
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 items-start">
+        {filteredFaqs.slice(0, 6).map((f, idx) => {
           const isOpen = openIndices.includes(idx);
           return (
             <div
@@ -114,6 +114,13 @@ export function FaqPanel({ faqs }: { faqs: Faq[] }) {
           );
         })}
       </div>
+      {filteredFaqs.length > 6 && (
+        <div className="text-center pt-2">
+          <p className="text-body-sm text-on-surface-variant">
+            +{filteredFaqs.length - 6} pertanyaan lainnya
+          </p>
+        </div>
+      )}
     </div>
   );
 }

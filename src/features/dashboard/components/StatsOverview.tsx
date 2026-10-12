@@ -19,8 +19,8 @@ export function StatsOverview({ summary }: { summary: DashboardSummary }) {
             <span className="font-label-ui text-xs text-on-surface-variant uppercase tracking-wider">
               Omzet Hari Ini
             </span>
-            <span className="inline-flex items-center justify-center w-8 h-8 rounded-xl text-primary bg-primary-fixed/50">
-              <Icon name="receipt_long" className="text-base" />
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-xl text-primary bg-primary-fixed/50 flex-shrink-0">
+              <Icon name="receipt_long" className="text-base" aria-hidden="true" />
             </span>
           </div>
 

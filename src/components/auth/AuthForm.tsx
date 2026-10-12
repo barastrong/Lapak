@@ -49,6 +49,7 @@ export function AuthField({
       <div className="relative">
         <input
           type={inputType}
+          aria-invalid={!!error}
           className={`w-full bg-surface-container-low rounded-lg px-space-md py-2.5 text-body-md text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all ${
             isPassword ? "pr-10" : ""
           } ${error ? "border border-error ring-1 ring-error/50" : ""} ${className}`}
@@ -58,7 +59,6 @@ export function AuthField({
           <button
             type="button"
             onClick={() => setShowPassword((prev) => !prev)}
-            tabIndex={-1}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface"
             aria-label={showPassword ? "Sembunyikan password" : "Lihat password"}
           >
@@ -132,6 +132,7 @@ export function OtpBoxes({
           pattern="[0-9]*"
           maxLength={6}
           disabled={disabled}
+          aria-label={`Digit ke-${i + 1} dari 6`}
           value={value[i] || ""}
           onChange={(e) => handleChange(i, e.target.value)}
           onKeyDown={(e) => handleKeyDown(i, e)}
@@ -188,7 +189,7 @@ export function AuthForm({
       <button
         type="submit"
         disabled={loading}
-        className="w-full mt-space-lg bg-primary text-on-primary rounded-xl font-label-ui text-label-ui py-3 hover:bg-primary-container transition-all active:translate-y-[1px] disabled:opacity-60 flex items-center justify-center gap-2 cursor-pointer"
+        className="w-full mt-space-lg bg-primary-container text-on-primary rounded-xl font-label-ui text-label-ui py-3 hover:bg-primary transition-all active:translate-y-[1px] disabled:opacity-60 flex items-center justify-center gap-2 cursor-pointer"
       >
         {loading ? (
           <span className="inline-block w-4 h-4 border-2 border-on-primary border-t-transparent rounded-full animate-spin" />

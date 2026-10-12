@@ -10,6 +10,7 @@ export function PengaturanScreen() {
   const { profile, presets, isLoading } = usePengaturan();
   const [activeStore, setActiveStore] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
+  const [backupMsg, setBackupMsg] = useState("");
 
   if (isLoading || !profile) {
     return (
@@ -33,9 +34,30 @@ export function PengaturanScreen() {
         </p>
       </div>
 
+      <nav aria-label="Bagian pengaturan" className="sticky top-4 z-20 -mx-1 px-1 py-1 flex gap-1.5 overflow-x-auto">
+        {[
+          ["profil", "Profil"],
+          ["printer", "Printer"],
+          ["kasir", "Kasir"],
+          ["bayar", "Bayar"],
+          ["pajak", "Pajak"],
+          ["notif", "Notif"],
+          ["tampil", "Tampil"],
+          ["data", "Data"],
+        ].map(([id, label]) => (
+          <a
+            key={id}
+            href={`#set-${id}`}
+            className="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-lowest border border-surface-container text-xs font-label-ui font-semibold text-on-surface-variant hover:text-primary hover:border-primary/40 shadow-xs transition-colors"
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
         <div className="lg:col-span-7 flex flex-col gap-space-md">
-          <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
+          <div id="set-profil" className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md scroll-mt-24">
             <div className="flex items-center gap-space-xs">
               <Icon name="storefront" className="text-primary text-xl" />
               <h2 className="font-headline-md text-headline-md text-on-surface">Profil Toko</h2>
@@ -78,7 +100,7 @@ export function PengaturanScreen() {
             ) : null}
           </div>
 
-          <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
+          <div id="set-printer" className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md scroll-mt-24">
             <div className="flex items-center gap-space-xs">
               <Icon name="print" className="text-primary text-xl" />
               <h2 className="font-headline-md text-headline-md text-on-surface">Preferensi Printer & Kertas</h2>
@@ -115,7 +137,7 @@ export function PengaturanScreen() {
             </div>
           </div>
 
-          <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
+          <div id="set-kasir" className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md scroll-mt-24">
             <div className="flex items-center gap-space-xs">
               <Icon name="badge" className="text-primary text-xl" />
               <h2 className="font-headline-md text-headline-md text-on-surface">Kasir & Hak Akses</h2>
@@ -132,7 +154,7 @@ export function PengaturanScreen() {
             </Button>
           </div>
 
-          <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
+          <div id="set-bayar" className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md scroll-mt-24">
             <div className="flex items-center gap-space-xs">
               <Icon name="payments" className="text-primary text-xl" />
               <h2 className="font-headline-md text-headline-md text-on-surface">Metode Pembayaran</h2>
@@ -183,7 +205,7 @@ export function PengaturanScreen() {
             </div>
           </div>
 
-          <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
+          <div id="set-pajak" className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md scroll-mt-24">
             <div className="flex items-center gap-space-xs">
               <Icon name="receipt" className="text-primary text-xl" />
               <h2 className="font-headline-md text-headline-md text-on-surface">Pajak & Biaya Tambahan</h2>
@@ -205,7 +227,7 @@ export function PengaturanScreen() {
             </div>
           </div>
 
-          <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
+          <div id="set-notif" className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md scroll-mt-24">
             <div className="flex items-center gap-space-xs">
               <Icon name="notifications" className="text-primary text-xl" />
               <h2 className="font-headline-md text-headline-md text-on-surface">Notifikasi & Peringatan</h2>
@@ -230,7 +252,7 @@ export function PengaturanScreen() {
             </div>
           </div>
 
-          <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
+          <div id="set-tampil" className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md scroll-mt-24">
             <div className="flex items-center gap-space-xs">
               <Icon name="palette" className="text-primary text-xl" />
               <h2 className="font-headline-md text-headline-md text-on-surface">Tampilan & Format</h2>
@@ -270,7 +292,7 @@ export function PengaturanScreen() {
             </div>
           </div>
 
-          <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md">
+          <div id="set-data" className="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-md scroll-mt-24">
             <div className="flex items-center gap-space-xs">
               <Icon name="cloud_sync" className="text-primary text-xl" />
               <h2 className="font-headline-md text-headline-md text-on-surface">Data & Cadangan (Backup)</h2>
@@ -279,15 +301,26 @@ export function PengaturanScreen() {
               Cadangkan database barang, pelanggan, dan riwayat transaksi warung secara berkala.
             </p>
              <div className="flex flex-wrap gap-2 pt-1">
-               <Button variant="surface" className="text-xs" onClick={() => alert("Cadangan data offline berhasil diunduh!")}>
-                 <Icon name="download" className="text-sm" />
-                 Cadangkan Data Lokal (JSON)
-               </Button>
-               <Button variant="surface" className="text-xs" onClick={() => alert("Sinkronisasi cloud berhasil diselesaikan!")}>
-                 <Icon name="sync" className="text-sm" />
-                 Sinkronkan ke Cloud
-               </Button>
-             </div>
+                <Button variant="surface" className="text-xs" onClick={() => {
+                  setBackupMsg("Cadangan data offline berhasil diunduh!");
+                  window.setTimeout(() => setBackupMsg(""), 2500);
+                }}>
+                  <Icon name="download" className="text-sm" />
+                  Cadangkan Data Lokal (JSON)
+                </Button>
+                <Button variant="surface" className="text-xs" onClick={() => {
+                  setBackupMsg("Sinkronisasi cloud berhasil diselesaikan!");
+                  window.setTimeout(() => setBackupMsg(""), 2500);
+                }}>
+                  <Icon name="sync" className="text-sm" />
+                  Sinkronkan ke Cloud
+                </Button>
+              </div>
+              {backupMsg ? (
+                <p className="text-label-code text-label-code text-tertiary">
+                  ✓ {backupMsg}
+                </p>
+              ) : null}
           </div>
         </div>
 

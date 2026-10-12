@@ -34,7 +34,7 @@ export function PengaturanScreen() {
         </p>
       </div>
 
-      <nav aria-label="Bagian pengaturan" className="sticky top-4 z-20 -mx-1 px-1 py-1 flex gap-1.5 overflow-x-auto">
+      <nav aria-label="Bagian pengaturan" className="sticky top-4 z-20 -mx-1 px-1 py-1 flex gap-1.5">
         {[
           ["profil", "Profil"],
           ["printer", "Printer"],

@@ -92,14 +92,13 @@ function HeroSection({ receipt }: { receipt: ReceiptData }) {
   return (
     <section className="w-full py-space-xl px-space-md overflow-hidden relative">
       <div className="max-w-[1240px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
-        <div className="lg:col-span-7 flex flex-col gap-space-md z-10">
+        <div className="lg:col-span-6 flex flex-col gap-space-md z-10">
           <HeroBadge />
-          <h1 className="font-headline-xl text-headline-xl md:text-[3.25rem] md:leading-[3.65rem] text-on-surface tracking-tight font-extrabold">
+          <h1 className="font-headline-xl text-headline-xl md:text-[3.5rem] md:leading-[4rem] text-on-surface tracking-tighter font-extrabold">
             Catat jualan, stok, dan untung dalam satu tempat
           </h1>
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
-            Dibuat khusus untuk pedagang kios, warung, dan ruko di Indonesia. Cukup dari laptop atau
-            komputer biasa di meja kasir tanpa perlu langganan rumit.
+          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            Dibuat khusus untuk pedagang kios, warung, dan ruko di Indonesia. Cukup dari laptop atau komputer biasa di meja kasir tanpa perlu langganan rumit.
           </p>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-md pt-space-xs">
             <a
@@ -123,7 +122,7 @@ function HeroSection({ receipt }: { receipt: ReceiptData }) {
           </div>
           <MetricStrip />
         </div>
-        <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
+        <div className="lg:col-span-6 flex justify-center lg:justify-start relative pl-space-lg">
           <NotaCard receipt={receipt} />
         </div>
       </div>

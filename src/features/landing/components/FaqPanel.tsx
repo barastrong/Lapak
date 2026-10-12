@@ -8,7 +8,7 @@ import type { Faq } from "@/features/landing/types";
 
 export function FaqPanel({ faqs }: { faqs: Faq[] }) {
   const [selectedCategory, setSelectedCategory] = useState<string>("Semua");
-  const [openIndices, setOpenIndices] = useState<number[]>([]);
+  const [openIndices, setOpenIndices] = useState<number[]>([0]);
 
   const categories = [
     "Semua",

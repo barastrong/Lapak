@@ -24,7 +24,7 @@ export function SidebarItem({ item }: SidebarItemProps) {
           : "text-on-surface-variant hover:bg-surface-container hover:text-on-surface"
       )}
     >
-      <span className="material-symbols-outlined text-xl">{item.icon}</span>
+      <span className="material-symbols-outlined text-xl" aria-hidden="true">{item.icon}</span>
       <span className="font-label-ui text-label-ui">{item.label}</span>
     </Link>
   );

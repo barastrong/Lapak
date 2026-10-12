@@ -36,7 +36,7 @@ function ProductCard({ product, onAdd }: ProductCardProps) {
       className="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between group cursor-pointer active:scale-[0.98]"
     >
       <div className="relative overflow-hidden rounded-lg mb-2 bg-surface-container-low h-28 flex items-center justify-center">
-        <span className="material-symbols-outlined text-[3rem] text-primary group-hover:scale-105 transition-transform duration-300">
+        <span className="material-symbols-outlined text-[3rem] text-primary group-hover:scale-105 transition-transform duration-300" aria-hidden="true">
           {product.icon}
         </span>
         <span className="absolute top-1.5 left-1.5 bg-surface-container-lowest/90 px-1.5 py-0.5 rounded font-label-code text-[11px] text-on-surface-variant">
@@ -65,7 +65,7 @@ function ProductCard({ product, onAdd }: ProductCardProps) {
             }}
             aria-label={`Tambah ${product.name} ke keranjang`}
           >
-            <span className="material-symbols-outlined text-base">add</span>
+            <span className="material-symbols-outlined text-base" aria-hidden="true">add</span>
           </button>
         </div>
       </div>

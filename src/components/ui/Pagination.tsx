@@ -25,7 +25,7 @@ export function Pagination({ total, page, totalPages, onPageChange, renderPage }
         className="w-8 h-8 rounded border border-on-surface/15 flex items-center justify-center text-on-surface-variant hover:bg-white disabled:opacity-30 disabled:cursor-not-allowed"
         aria-label="Halaman sebelumnya"
       >
-        <span className="material-symbols-outlined text-base">chevron_left</span>
+        <span className="material-symbols-outlined text-base" aria-hidden="true">chevron_left</span>
       </button>
       {pages.map((p) => (
         <button
@@ -61,7 +61,7 @@ export function Pagination({ total, page, totalPages, onPageChange, renderPage }
         className="w-8 h-8 rounded border border-on-surface/15 flex items-center justify-center text-on-surface-variant hover:bg-white disabled:opacity-30 disabled:cursor-not-allowed"
         aria-label="Halaman berikutnya"
       >
-        <span className="material-symbols-outlined text-base">chevron_right</span>
+        <span className="material-symbols-outlined text-base" aria-hidden="true">chevron_right</span>
       </button>
       <span className="pl-2 text-xs text-on-surface-variant">{total} total</span>
     </div>

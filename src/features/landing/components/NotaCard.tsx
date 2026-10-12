@@ -114,7 +114,7 @@ export function NotaCard({ receipt }: { receipt: ReceiptData }) {
 export function HeroBadge() {
   return (
     <div className="inline-flex items-center gap-space-xs self-start bg-secondary-fixed/50 text-on-secondary-fixed px-space-md py-1.5 rounded-full shadow-sm">
-      <span className="material-symbols-outlined text-[16px] text-secondary">receipt_long</span>
+      <span className="material-symbols-outlined text-[16px] text-secondary" aria-hidden="true">receipt_long</span>
       <span className="font-label-ui text-label-ui font-bold">Sistem Kasir & Buku Warung Praktis</span>
     </div>
   );

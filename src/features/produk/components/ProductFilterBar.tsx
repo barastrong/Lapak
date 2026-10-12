@@ -106,7 +106,7 @@ function SelectBox({
           </option>
         ))}
       </select>
-      <span className="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-sm text-on-surface-variant pointer-events-none">
+      <span className="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-sm text-on-surface-variant pointer-events-none" aria-hidden="true">
         {icon}
       </span>
     </div>

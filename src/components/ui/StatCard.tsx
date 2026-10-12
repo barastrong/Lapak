@@ -25,7 +25,7 @@ export function StatCard({
         <span
           className={`flex items-center justify-center p-1 rounded-lg text-lg ${iconClassName}`}
         >
-          <span className="material-symbols-outlined">{icon}</span>
+          <span className="material-symbols-outlined" aria-hidden="true">{icon}</span>
         </span>
       </div>
       <div>
